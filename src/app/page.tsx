@@ -11,16 +11,16 @@ import { cn } from "@/lib/utils";
 
 export const products = [
   {
-    title: "Moonbeam",
+    title: "PanganMerata",
     link: "https://gomoonbeam.com",
     thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/moonbeam.png",
+      "/PanganMerata.png",
   },
   {
-    title: "Cursor",
-    link: "https://cursor.so",
+    title: "Jiniso",
+    link: "https://cursor.sohttps://github.com/ArthaFreestyle/JINISO",
     thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/cursor.png",
+      "/Jiniso.png",
   },
   {
     title: "Rogue",
@@ -171,7 +171,7 @@ export default function Home() {
               <div className="w-full max-w-[200px]  sm:max-w-[250px] md:max-w-md lg:max-w-md">
                 <CardContainer className="inter-var w-full">
                   <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full rounded-xl p-3 sm:p-4 md:p-6 border">
-                    <CardItem translateZ={70} rotateZ={-15} translateY={-10} translateX={-10} className="w-full">
+                    <CardItem translateZ={70} rotateZ={-10} translateY={-10} translateX={-10} className="w-full">
                       <Image  
                         src="/profile.JPG"
                         alt="avatar"
@@ -230,9 +230,9 @@ function Navbar({ className }: { className?: string }) {
         <MenuItem setActive={setActive} active={active} item="Products">
           <div className="text-xs sm:text-sm grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 lg:gap-6 p-2 sm:p-4 w-full max-w-xs sm:max-w-sm md:max-w-2xl">
             <ProductItem
-              title="Algochurn"
-              href="https://algochurn.com"
-              src="https://assets.aceternity.com/demos/algochurn.webp"
+              title="PanganMerata"
+              href="https://olivia-vert.vercel.app/"
+              src="/PanganMerata.png"
               description="Prepare for tech interviews like never before."
             />
             <ProductItem
