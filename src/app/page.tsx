@@ -23,46 +23,46 @@ export const products = [
       "/Jiniso.png",
   },
   {
-    title: "Rogue",
-    link: "https://userogue.com",
+    title: "Belanja",
+    link: "https://market-place-beta-two.vercel.app/",
     thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/rogue.png",
+      "/Belanja.png",
   },
   {
-    title: "Editorially",
-    link: "https://editorially.org",
+    title: "Wahib Portofolio",
+    link: "https://wahib-portofolio.vercel.app/",
     thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/editorially.png",
+      "/Wahib.png",
   },
   {
-    title: "Editrix AI",
-    link: "https://editrix.ai",
+    title: "FreightPoooling",
+    link: "https://github.com/ArthaFreestyle/olivia2",
     thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/editrix.png",
+      "/FreightPooling.png",
   },
   {
-    title: "Pixel Perfect",
-    link: "https://app.pixelperfect.quest",
+    title: "FreightPooliing",
+    link: "https://github.com/ArthaFreestyle/olivia2",
     thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/pixelperfect.png",
+      "/FreightPooling.png",
   },
   {
-    title: "Algochurn",
-    link: "https://algochurn.com",
+    title: "Fuzzy Sugeno Laptop Recomendation",
+    link: "https://pakar-plum.vercel.app/",
     thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/algochurn.png",
+      "/Fuzzy.png",
   },
   {
-    title: "Aceternity UI",
-    link: "https://ui.aceternity.com",
+    title: "Point Of Sales",
+    link: "https://github.com/ArthaFreestyle/cashier-app",
     thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/aceternityui.png",
+      "/POS.png",
   },
   {
-    title: "Tailwind Master Kit",
-    link: "https://tailwindmasterkit.com",
+    title: "FreightPooling",
+    link: "https://github.com/ArthaFreestyle/olivia2",
     thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/tailwindmasterkit.png",
+      "/FreightPooling.png",
   },
   {
     title: "SmartBridge",
@@ -70,35 +70,29 @@ export const products = [
     thumbnail:
       "https://aceternity.com/images/products/thumbnails/new/smartbridge.png",
   },
-  {
-    title: "Renderwork Studio",
-    link: "https://renderwork.studio",
+ {
+    title: "PanganMerata",
+    link: "https://gomoonbeam.com",
     thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/renderwork.png",
+      "/PanganMerata.png",
   },
   {
-    title: "Creme Digital",
-    link: "https://cremedigital.com",
+    title: "Belanja",
+    link: "https://market-place-beta-two.vercel.app/",
     thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/cremedigital.png",
+      "/Belanja.png",
   },
   {
-    title: "Golden Bells Academy",
-    link: "https://goldenbellsacademy.com",
+    title: "Jiniso",
+    link: "https://cursor.sohttps://github.com/ArthaFreestyle/JINISO",
     thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/goldenbellsacademy.png",
+      "/Jiniso.png",
   },
   {
-    title: "Invoker Labs",
-    link: "https://invoker.lol",
+    title: "Wahib Portofolio",
+    link: "https://wahib-portofolio.vercel.app/",
     thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/invoker.png",
-  },
-  {
-    title: "E Free Invoice",
-    link: "https://efreeinvoice.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/efreeinvoice.png",
+      "/Wahib.png",
   },
 ];
 
