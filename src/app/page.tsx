@@ -1,68 +1,95 @@
-"use client"
+"use client";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import Image from "next/image";
-import { CardBody,CardContainer,CardItem } from "@/components/ui/3d-card";
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import { HeroParallax } from "@/components/ui/hero-parallax";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import React, { useState } from "react";
-import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu";
+import {
+  HoveredLink,
+  Menu,
+  MenuItem,
+  ProductItem,
+} from "@/components/ui/navbar-menu";
 import { cn } from "@/lib/utils";
- 
+import {
+  DraggableCardBody,
+  DraggableCardContainer,
+} from "@/components/ui/draggable-card";
+
+export const Photos = [
+  {
+    title: "Malaka Project",
+    image:
+      "/Malaka.jpg",
+    className: "absolute top-10 left-[20%] rotate-[-5deg]",
+  },
+  {
+    title: "HIMA",
+    image:
+      "/HIMTI.jpg",
+    className: "absolute top-40 left-[25%] rotate-[-7deg]",
+  },
+  {
+    title: "EVOP",
+    image:
+      "/EVOP.jpg",
+    className: "absolute top-5 left-[40%] rotate-[8deg]",
+  },
+  {
+    title: "GDG",
+    image:
+      "/GDG.jpg",
+    className: "absolute top-32 left-[55%] rotate-[10deg]",
+  },
+
+];
 
 export const products = [
   {
     title: "PanganMerata",
     link: "https://gomoonbeam.com",
-    thumbnail:
-      "/PanganMerata.png",
+    thumbnail: "/PanganMerata.png",
   },
   {
     title: "Jiniso",
-    link: "https://cursor.sohttps://github.com/ArthaFreestyle/JINISO",
-    thumbnail:
-      "/Jiniso.png",
+    link: "https://github.com/ArthaFreestyle/JINISO",
+    thumbnail: "/Jiniso.png",
   },
   {
     title: "Belanja",
     link: "https://market-place-beta-two.vercel.app/",
-    thumbnail:
-      "/Belanja.png",
+    thumbnail: "/Belanja.png",
   },
   {
     title: "Wahib Portofolio",
     link: "https://wahib-portofolio.vercel.app/",
-    thumbnail:
-      "/Wahib.png",
+    thumbnail: "/Wahib.png",
   },
   {
     title: "FreightPoooling",
     link: "https://github.com/ArthaFreestyle/olivia2",
-    thumbnail:
-      "/FreightPooling.png",
+    thumbnail: "/FreightPooling.png",
   },
   {
     title: "FreightPooliing",
     link: "https://github.com/ArthaFreestyle/olivia2",
-    thumbnail:
-      "/FreightPooling.png",
+    thumbnail: "/FreightPooling.png",
   },
   {
     title: "Fuzzy Sugeno Laptop Recomendation",
     link: "https://pakar-plum.vercel.app/",
-    thumbnail:
-      "/Fuzzy.png",
+    thumbnail: "/Fuzzy.png",
   },
   {
     title: "Point Of Sales",
     link: "https://github.com/ArthaFreestyle/cashier-app",
-    thumbnail:
-      "/POS.png",
+    thumbnail: "/POS.png",
   },
   {
     title: "FreightPooling",
     link: "https://github.com/ArthaFreestyle/olivia2",
-    thumbnail:
-      "/FreightPooling.png",
+    thumbnail: "/FreightPooling.png",
   },
   {
     title: "SmartBridge",
@@ -70,29 +97,25 @@ export const products = [
     thumbnail:
       "https://aceternity.com/images/products/thumbnails/new/smartbridge.png",
   },
- {
+  {
     title: "PanganMerata",
     link: "https://gomoonbeam.com",
-    thumbnail:
-      "/PanganMerata.png",
+    thumbnail: "/PanganMerata.png",
   },
   {
     title: "Belanja",
     link: "https://market-place-beta-two.vercel.app/",
-    thumbnail:
-      "/Belanja.png",
+    thumbnail: "/Belanja.png",
   },
   {
     title: "Jiniso",
     link: "https://cursor.sohttps://github.com/ArthaFreestyle/JINISO",
-    thumbnail:
-      "/Jiniso.png",
+    thumbnail: "/Jiniso.png",
   },
   {
-    title: "Wahib Portofolio",
-    link: "https://wahib-portofolio.vercel.app/",
-    thumbnail:
-      "/Wahib.png",
+    title: "Akademi Crypto",
+    link: "https://github.com/ArthaFreestyle/Akademi-Crypto",
+    thumbnail: "/Mobile.png",
   },
 ];
 
@@ -101,72 +124,72 @@ const people = [
     id: 1,
     name: "Laravel",
     designation: "PHP Framework",
-    image:
-      "/laravel.png",
+    image: "/laravel.png",
   },
   {
     id: 2,
     name: "React JS",
     designation: "JavaScript Library",
-    image:
-      "/React.png",
+    image: "/React.png",
   },
   {
     id: 3,
     name: "Next JS",
     designation: "JavaScript Framework",
-    image:
-      "/nextjs.png",
+    image: "/nextjs.png",
   },
   {
     id: 4,
     name: "Postgree SQL",
     designation: "Database",
-    image:
-      "/Postgre.png",
+    image: "/Postgre.png",
   },
   {
     id: 5,
     name: "Solidity",
     designation: "Blockchain",
-    image:
-      "/solidity.jpg",
+    image: "/solidity.jpg",
   },
   {
     id: 6,
     name: "Tensorflow",
     designation: "Machine Learning",
-    image:
-      "/tf.png",
+    image: "/tf.png",
   },
 ];
 
 export default function Home() {
   return (
     <div className="w-full overflow-x-hidden">
-      <Navbar/>
+      <Navbar />
       <AuroraBackground>
         <div className="container mx-auto sm:mt-10 md:mt-20 px-4 sm:px-6 lg:px-8 min-h-screen">
           <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen py-16 lg:py-0">
-            
             {/* Text Section */}
             <div className="w-full lg:w-1/2 text-center lg:text-left mb-4 lg:mb-0 lg:pr-12 pt-10">
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 md:mb-6">
                 Hi! I'm Artha Gandhi Wardhana Aksa
               </p>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-6">
-                Full-Stack Developer<br className="hidden sm:block"/>
+                Full-Stack Developer
+                <br className="hidden sm:block" />
                 <span className="sm:hidden"> </span>Based In Indonesia
               </h1>
             </div>
-            
+
             {/* Image Section */}
             <div className="w-full lg:w-1/2 flex justify-center lg:justify-start pb-20">
               <div className="w-full max-w-[200px]  sm:max-w-[250px] md:max-w-md lg:max-w-md">
                 <CardContainer className="inter-var w-full">
                   <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full rounded-xl p-3 sm:p-4 md:p-6 border">
-                    <CardItem translateZ={70} rotateZ={-10} translateY={-10} translateX={-10} className="w-full">
-                      <Image  
+                    <CardItem
+                      translateZ={70}
+                      rotateZ={-10}
+                      translateY={-10}
+                      translateX={-10}
+                      className="w-full"
+                    >
+                      <Image
                         src="/profile.JPG"
                         alt="avatar"
                         className="w-full h-auto object-cover rounded-xl group-hover/card:shadow-xl"
@@ -182,7 +205,7 @@ export default function Home() {
           </div>
         </div>
       </AuroraBackground>
-      
+
       {/* Tech Stack Section */}
       <div className="w-full py-12 sm:py-16 lg:py-20 bg-white dark:bg-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -191,16 +214,35 @@ export default function Home() {
           </h2>
           <div className="flex justify-center">
             <div className="w-full max-w-4xl overflow-x-auto">
-              <div className="flex justify-center items-center min-w-max px-4">
+              <div className="flex justify-center items-center min-w-max px-4 py-10 my-9">
                 <AnimatedTooltip items={people} />
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       <div className="w-full">
-        <HeroParallax products={products}/>
+        <HeroParallax products={products} />
+      </div>
+      <div className="my-10 py-10 w-full">
+        <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
+          <p className="absolute top-1/2 mx-auto max-w-sm -translate-y-3/4 text-center text-2xl font-black text-neutral-400 md:text-4xl dark:text-neutral-800">
+            Growing together with passionate tech minds.
+          </p>
+          {Photos.map((item) => (
+            <DraggableCardBody className={item.className} key={item.title}>
+              <img
+                src={item.image}
+                alt={item.title}
+                className="pointer-events-none relative z-10 h-80 w-80 object-cover"
+              />
+              <h3 className="mt-4 text-center text-2xl font-bold text-neutral-700 dark:text-neutral-300">
+                {item.title}
+              </h3>
+            </DraggableCardBody>
+          ))}
+        </DraggableCardContainer>
       </div>
     </div>
   );
@@ -210,7 +252,10 @@ function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
   return (
     <div
-      className={cn("fixed top-2 sm:top-4 lg:top-10 inset-x-0 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl mx-auto z-50 px-2 sm:px-4", className)}
+      className={cn(
+        "fixed top-2 sm:top-4 lg:top-10 inset-x-0 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl mx-auto z-50 px-2 sm:px-4",
+        className
+      )}
     >
       <Menu setActive={setActive}>
         <MenuItem setActive={setActive} active={active} item="Services">
@@ -227,28 +272,28 @@ function Navbar({ className }: { className?: string }) {
               title="PanganMerata"
               href="https://olivia-vert.vercel.app/"
               src="/PanganMerata.png"
-              description="Prepare for tech interviews like never before."
+              description="PanganMerata merupakan platform digital terintegrasi yang dirancang untuk mengatasi ketimpangan informasi distribusi pangan di Indonesia."
             />
             <ProductItem
-              title="Tailwind Master Kit"
-              href="https://tailwindmasterkit.com"
-              src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
-              description="Production ready Tailwind css components for your next project"
+              title="Jiniso"
+              href="https://github.com/ArthaFreestyle/JINISO"
+              src="/Jiniso.png"
+              description="Marketplace for Jiniso Products with mobile layout"
             />
             <div className="md:col-span-1">
               <ProductItem
-                title="Moonbeam"
-                href="https://gomoonbeam.com"
-                src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
-                description="Never write from scratch again. Go from idea to blog in minutes."
+                title="Point Of Sales"
+                href="https://github.com/ArthaFreestyle/cashier-app"
+                src="/POS.png"
+                description="Features include product management, sales processing, inventory tracking, daily/weekly reports, and user access control."
               />
             </div>
             <div className="md:col-span-1">
               <ProductItem
-                title="Rogue"
+                title="Akademi Crypto Copy"
                 href="https://userogue.com"
-                src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png"
-                description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
+                src="/Mobile.png"
+                description="Mobile News Application Built With Flutter"
               />
             </div>
           </div>
