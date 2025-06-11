@@ -21,7 +21,7 @@ export const Photos = [
   {
     title: "Malaka Project",
     image:
-      "/Malaka.jpg",
+      "/MALAKA.jpg",
     className: "absolute top-10 left-[20%] rotate-[-5deg]",
   },
   {
