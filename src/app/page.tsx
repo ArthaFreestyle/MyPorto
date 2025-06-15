@@ -166,7 +166,7 @@ export default function Home() {
         <div className="container mx-auto sm:mt-10 md:mt-20 px-4 sm:px-6 lg:px-8 min-h-screen">
           <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen py-16 lg:py-0">
             {/* Text Section */}
-            <div className="w-full lg:w-1/2 text-center lg:text-left mb-4 lg:mb-0 lg:pr-12 pt-10">
+            <div className="w-full lg:w-1/2 text-center lg:text-left mb-4 lg:mb-0 lg:pr-12">
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 md:mb-6">
                 Hi! I'm Artha Gandhi Wardhana Aksa
               </p>
@@ -175,6 +175,13 @@ export default function Home() {
                 <br className="hidden sm:block" />
                 <span className="sm:hidden"> </span>Based In Indonesia
               </h1>
+              <a 
+        href="https://drive.google.com/uc?export=download&id=1Jhve40bZx2OtnB9zPV2umtmYjZgjW4G_"
+        download="Artha_Gandhi_CV.pdf"
+        className="inline-block bg-black hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-gray-300 active:scale-95 cursor-pointer"
+      >
+        Download CV
+      </a>
             </div>
 
             {/* Image Section */}
