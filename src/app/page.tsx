@@ -82,7 +82,7 @@ export default function Home() {
                     </div>
                     <p className="text-xl font-bold" style={{ color: "var(--text-primary)" }}>Backend Engineer</p>
                   </div>
-                  <p className="text-xs" style={{ color: "var(--text-secondary)" }}>From coffee brainstorm to launch day. I like to Dev and Design.</p>
+                  <p className="text-xs" style={{ color: "var(--text-secondary)" }}>Building the unseen engine that powers the apps.</p>
                 </div>
 
               </div>
