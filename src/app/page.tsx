@@ -1,319 +1,228 @@
 "use client";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import Image from "next/image";
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
-import { HeroParallax } from "@/components/ui/hero-parallax";
+import PageTransition from "@/components/PageTransition";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
-import React, { useState } from "react";
-import {
-  HoveredLink,
-  Menu,
-  MenuItem,
-  ProductItem,
-} from "@/components/ui/navbar-menu";
-import { cn } from "@/lib/utils";
-import {
-  DraggableCardBody,
-  DraggableCardContainer,
-} from "@/components/ui/draggable-card";
+import LiquidText from "@/components/LiquidText";
 
-export const Photos = [
+const stack = [
   {
-    title: "Malaka Project",
-    image:
-      "/MALAKA.jpg",
-    className: "absolute top-10 left-[20%] rotate-[-5deg]",
-  },
-  {
-    title: "HIMA",
-    image:
-      "/HIMTI.jpg",
-    className: "absolute top-40 left-[25%] rotate-[-7deg]",
-  },
-  {
-    title: "EVOP",
-    image:
-      "/EVOP.jpg",
-    className: "absolute top-5 left-[40%] rotate-[8deg]",
-  },
-  {
-    title: "GDG",
-    image:
-      "/GDG.jpg",
-    className: "absolute top-32 left-[55%] rotate-[10deg]",
-  },
-
-];
-
-export const products = [
-  {
-    title: "PanganMerata",
-    link: "https://gomoonbeam.com",
-    thumbnail: "/PanganMerata.png",
-  },
-  {
-    title: "Jiniso",
-    link: "https://github.com/ArthaFreestyle/JINISO",
-    thumbnail: "/Jiniso.png",
-  },
-  {
-    title: "Belanja",
-    link: "https://market-place-beta-two.vercel.app/",
-    thumbnail: "/Belanja.png",
-  },
-  {
-    title: "Wahib Portofolio",
-    link: "https://wahib-portofolio.vercel.app/",
-    thumbnail: "/Wahib.png",
-  },
-  {
-    title: "FreightPoooling",
-    link: "https://github.com/ArthaFreestyle/olivia2",
-    thumbnail: "/FreightPooling.png",
-  },
-  {
-    title: "FreightPooliing",
-    link: "https://github.com/ArthaFreestyle/olivia2",
-    thumbnail: "/FreightPooling.png",
-  },
-  {
-    title: "Fuzzy Sugeno Laptop Recomendation",
-    link: "https://pakar-plum.vercel.app/",
-    thumbnail: "/Fuzzy.png",
-  },
-  {
-    title: "Point Of Sales",
-    link: "https://github.com/ArthaFreestyle/cashier-app",
-    thumbnail: "/POS.png",
-  },
-  {
-    title: "FreightPooling",
-    link: "https://github.com/ArthaFreestyle/olivia2",
-    thumbnail: "/FreightPooling.png",
-  },
-  {
-    title: "SmartBridge",
-    link: "https://smartbridgetech.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/smartbridge.png",
-  },
-  {
-    title: "PanganMerata",
-    link: "https://gomoonbeam.com",
-    thumbnail: "/PanganMerata.png",
-  },
-  {
-    title: "Belanja",
-    link: "https://market-place-beta-two.vercel.app/",
-    thumbnail: "/Belanja.png",
-  },
-  {
-    title: "Jiniso",
-    link: "https://cursor.sohttps://github.com/ArthaFreestyle/JINISO",
-    thumbnail: "/Jiniso.png",
-  },
-  {
-    title: "Akademi Crypto",
-    link: "https://github.com/ArthaFreestyle/Akademi-Crypto",
-    thumbnail: "/Mobile.png",
-  },
-];
-
-const people = [
-  {
-    id: 1,
-    name: "Laravel",
-    designation: "PHP Framework",
-    image: "/laravel.png",
+    id : 1,
+    image : "/php.webp"
   },
   {
     id: 2,
-    name: "React JS",
-    designation: "JavaScript Library",
-    image: "/React.png",
+    image : "/rust-original.svg"
   },
   {
     id: 3,
-    name: "Next JS",
-    designation: "JavaScript Framework",
-    image: "/nextjs.png",
-  },
-  {
-    id: 4,
-    name: "Postgree SQL",
-    designation: "Database",
-    image: "/Postgre.png",
-  },
-  {
-    id: 5,
-    name: "Solidity",
-    designation: "Blockchain",
-    image: "/solidity.jpg",
-  },
-  {
-    id: 6,
-    name: "Tensorflow",
-    designation: "Machine Learning",
-    image: "/tf.png",
-  },
-];
+    image : "/go.webp"
+  }
+]
 
 export default function Home() {
-  return (
-    <div className="w-full overflow-x-hidden">
-      <Navbar />
-      <AuroraBackground>
-        <div className="container mx-auto sm:mt-10 md:mt-20 px-4 sm:px-6 lg:px-8 min-h-screen">
-          <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen py-16 lg:py-0">
-            {/* Text Section */}
-            <div className="w-full lg:w-1/2 text-center lg:text-left mb-4 lg:mb-0 lg:pr-12">
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 md:mb-6">
-                Hi! I'm Artha Gandhi Wardhana Aksa
-              </p>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-6">
-                Full-Stack Developer
-                <br className="hidden sm:block" />
-                <span className="sm:hidden"> </span>Based In Indonesia
-              </h1>
-              <a 
-        href="https://drive.google.com/uc?export=download&id=1Jhve40bZx2OtnB9zPV2umtmYjZgjW4G_"
-        download="Artha_Gandhi_CV.pdf"
-        className="inline-block bg-black hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-gray-300 active:scale-95 cursor-pointer"
-      >
-        Download CV
-      </a>
-            </div>
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [bioTooltip, setBioTooltip] = useState(false);
+  const [activeStatTooltip, setActiveStatTooltip] = useState<string | null>(null);
 
-            {/* Image Section */}
-            <div className="w-full lg:w-1/2 flex justify-center lg:justify-start pb-20">
-              <div className="w-full max-w-[200px]  sm:max-w-[250px] md:max-w-md lg:max-w-md">
-                <CardContainer className="inter-var w-full">
-                  <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full rounded-xl p-3 sm:p-4 md:p-6 border">
-                    <CardItem
-                      translateZ={70}
-                      rotateZ={-10}
-                      translateY={-10}
-                      translateX={-10}
-                      className="w-full"
-                    >
-                      <Image
-                        src="/profile.JPG"
-                        alt="avatar"
-                        className="w-full h-auto object-cover rounded-xl group-hover/card:shadow-xl"
-                        width={400}
-                        height={500}
-                        priority
-                      />
-                    </CardItem>
-                  </CardBody>
-                </CardContainer>
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+    gsap.fromTo(hero, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, delay: 0.1, ease: "power3.out" });
+  }, []);
+
+  return (
+    <div className="h-[100dvh] w-full flex flex-col overflow-y-auto lg:overflow-hidden relative">
+      <PageTransition>
+        <main className="flex-1 max-w-[1400px] mx-auto px-4 md:px-6 lg:px-6 py-8 md:py-10 lg:py-10 mt-2 md:mt-4 lg:mt-6 w-full min-h-0">
+          <div className="h-full grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6">
+
+            {/* ===== LEFT COLUMN: Profile ===== */}
+            <div className="lg:col-span-4 flex flex-col gap-3">
+
+              {/* Profile Card — photo + name SIDE BY SIDE on top, then details */}
+              <div className="glass-card p-6 md:p-10 lg:p-13">
+                {/* Photo + Title side by side */}
+                <div ref={heroRef} className="flex items-center gap-4 mb-5 opacity-0">
+                  <div className="w-40 h-48 md:w-20 md:h-28 lg:w-28 lg:h-36 rounded-2xl overflow-hidden shadow-lg ring-2 ring-white/50 flex-shrink-0">
+                    <Image src="/profile.jpg" alt="Artha Gandhi" width={96} height={96} className="w-full h-full border-2 border-black object-cover" priority />
+                  </div>
+                  <div className="flex-1 w-full h-full flex flex-col justify-center items-center overflow-hidden">
+                    <LiquidText />
+                  </div>
+                  <div>
+                  </div>
+                </div>
+
+               <div className="flex items-center gap-2.5">
+                <h2 className="text-2xl lg:text-2xl font-bold" style={{ color: "var(--text-primary)" }}>Artha Gandhi Wardhana Aksa</h2>
+                <div className="flex items-center gap-2.5">
+                  {[
+                    { href: "https://github.com/ArthaFreestyle", d: "M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z", fill: true },
+                    { href: "https://linkedin.com", d: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z", fill: true },
+                  ].map((s, i) => (
+                    <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
+                      className="w-15 h-15 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                      style={{ background: "rgba(0,0,0,0.04)" }}>
+                      <svg width="30" height="30" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d={s.d} /></svg>
+                    </a>
+                  ))}
+                </div>
+                </div>
+
+              </div>
+
+              <div className="glass-card p-5 md:p-5 lg:p-5" >
+                {/* Badge */}
+                
+                <div >
+                  <div className="flex flex-col md:flex-row gap-3 mb-2"> 
+                  <div className="flex flex-row items-center">
+                    <AnimatedTooltip items={stack} />
+                  </div>
+                   <p className="text-xl font-bold" style={{ color: "var(--text-primary)" }}>Backend Engineer</p>
+                   </div>
+                  <p className="text-xs" style={{ color: "var(--text-secondary)" }}>From coffee brainstorm to launch day. I like to Dev and Design.</p>
+                </div>
+
+              </div>
+
+              <div className="glass-card p-6 md:p-7 lg:p-8" >
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-4" style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+                  {[
+                    { v: "10+", l: "Projects\nShipped", t: "From building robust APIs from scratch to exorcising N+1 demons from legacy code. I've seen it all." },
+                    { v: "5+", l: "Satisfied\nClients", t: "I turn sluggish backends into speed demons so founders can finally sleep at night. You're in good hands." },
+                    { v: "2+", l: "Years of\nJourney", t: "Writing clean architecture, optimizing heavy queries, and fixing whatever the previous guy broke." }
+                  ].map((s) => (
+                    <div key={s.l} className="text-center relative"
+                         onMouseEnter={() => setActiveStatTooltip(s.l)}
+                         onMouseLeave={() => setActiveStatTooltip(null)}>
+                      <p className="text-2xl lg:text-3xl font-bold" style={{ color: "var(--text-primary)" }}>{s.v}</p>
+                      <p className="text-[10px] lg:text-xs leading-tight whitespace-pre-line mt-1" style={{ color: "var(--text-secondary)" }}>{s.l}</p>
+                      
+                      {/* Tooltip Wrapper to prevent CSS animation from overwriting translate-x */}
+                      {activeStatTooltip === s.l && (
+                        <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-48 z-50">
+                          <div className="ios-tooltip text-center block shadow-[0_10px_40px_rgba(0,0,0,0.5)] w-full"
+                            style={{ 
+                              animation: "puzzlePop 0.35s ease forwards", 
+                              cursor: "default",
+                              background: "linear-gradient(145deg, rgba(140, 140, 145, 0.95) 0%, rgba(15, 15, 18, 0.95) 100%)",
+                              border: "1px solid rgba(255, 255, 255, 0.2)"
+                            }}>
+                            {s.t}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </AuroraBackground>
 
-      {/* Tech Stack Section */}
-      <div className="w-full py-12 sm:py-16 lg:py-20 bg-white dark:bg-black">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-12 lg:mb-16">
-            Tech Stack
-          </h2>
-          <div className="flex justify-center">
-            <div className="w-full max-w-4xl overflow-x-auto">
-              <div className="flex justify-center items-center min-w-max px-4 py-10 my-9">
-                <AnimatedTooltip items={people} />
+            {/* ===== CENTER COLUMN: Bio + Philosophy ===== */}
+            <div className="lg:col-span-5 flex flex-col gap-3">
+
+              {/* Bio Card */}
+              <div className="glass-card p-6 lg:p-7 flex-1 relative cursor-default"
+                onMouseEnter={() => setBioTooltip(true)} onMouseLeave={() => setBioTooltip(false)}>
+                <p className="text-base font-bold lg:text-lg leading-relaxed mb-4" style={{ color: "var(--text-primary)" }}>
+                  I kicked things off building web applications and exploring
+                  modern frameworks, coding quick prototypes and shipping production-ready platforms.
+                </p>
+                <p className="text-base font-bold lg:text-lg leading-relaxed mb-4" style={{ color: "var(--text-primary)" }}>
+                  That small hustle morphed into a full-time adventure, where I&apos;ve
+                  built all kinds of web and mobile products.
+                </p>
+                <p className="text-base lg:text-lg leading-relaxed mb-4" style={{ color: "var(--text-primary)" }}>
+                  From{" "}
+                  <span className="font-bold" style={{ color: "var(--accent-green)" }}>exploring new technologies</span>{" "}
+                  to{" "}
+                  <span className="font-bold" style={{ color: "var(--accent-blue)" }}>shipping real products</span>.
+                </p>
+                <p className="text-sm lg:text-base leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                  Most devs only care about the tech stuff but I&apos;m kinda everywhere. You&apos;ll find
+                  me chatting with startup founders, hanging out in tech communities, or
+                  grabbing coffee with great minds in the space.
+                </p>
+                <p className="text-sm lg:text-base leading-relaxed mt-3" style={{ color: "var(--text-secondary)" }}>
+                  When my teammates get lost in technical jargon I&apos;m usually the one breaking it
+                  down so everyone actually gets what we&apos;re doing. It&apos;s not just about shipping code, it&apos;s about
+                  understanding the people, the market, and the goal behind every line I write.
+                </p>
+
+                
+              </div>
+
+              {/* Philosophy */}
+              <div className="glass-card p-6 lg:p-7">
+                <h3 className="text-lg font-bold flex items-center gap-2 mb-4" style={{ color: "var(--text-primary)" }}>
+                  💡 My Philosophy
+                </h3>
+                <blockquote className="text-center mb-4">
+                  <p className="text-xl lg:text-2xl font-bold italic" style={{ color: "var(--text-primary)" }}>
+                    &ldquo;Focus on the Endgoal&rdquo;
+                  </p>
+                </blockquote>
+                <p className="text-sm lg:text-base leading-relaxed mb-3" style={{ color: "var(--text-secondary)" }}>
+                  All the actions towards doing something should be focused on the end goal.
+                  Making a landing page? Focus on the conversion and message.
+                  Making a DeFi project? Focus on the security and financial metrics.
+                </p>
+                <p className="text-sm lg:text-base leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                  It&apos;s not about using the most complicated tools and tech possible, it&apos;s about
+                  using the <span className="font-semibold" style={{ color: "var(--accent-blue)" }}>right tools and tech</span> to get the job done.
+                </p>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div className="w-full">
-        <HeroParallax products={products} />
-      </div>
-      <div className="my-10 py-10 w-full">
-        <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
-          <p className="absolute top-1/2 mx-auto max-w-sm -translate-y-3/4 text-center text-2xl font-black text-neutral-400 md:text-4xl dark:text-neutral-800">
-            Growing together with passionate tech minds.
-          </p>
-          {Photos.map((item) => (
-            <DraggableCardBody className={item.className} key={item.title}>
-              <img
-                src={item.image}
-                alt={item.title}
-                className="pointer-events-none relative z-10 h-80 w-80 object-cover"
-              />
-              <h3 className="mt-4 text-center text-2xl font-bold text-neutral-700 dark:text-neutral-300">
-                {item.title}
-              </h3>
-            </DraggableCardBody>
-          ))}
-        </DraggableCardContainer>
-      </div>
-    </div>
-  );
-}
+            {/* ===== RIGHT COLUMN: Achievements ===== */}
+            <div className="lg:col-span-3 flex flex-col gap-3">
 
-function Navbar({ className }: { className?: string }) {
-  const [active, setActive] = useState<string | null>(null);
-  return (
-    <div
-      className={cn(
-        "fixed top-2 sm:top-4 lg:top-10 inset-x-0 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl mx-auto z-50 px-2 sm:px-4",
-        className
-      )}
-    >
-      <Menu setActive={setActive}>
-        <MenuItem setActive={setActive} active={active} item="Services">
-          <div className="flex flex-col space-y-2 sm:space-y-4 text-xs sm:text-sm p-2 sm:p-4">
-            <HoveredLink href="/web-dev">Web Development</HoveredLink>
-            <HoveredLink href="/interface-design">Interface Design</HoveredLink>
-            <HoveredLink href="/seo">Search Engine Optimization</HoveredLink>
-            <HoveredLink href="/branding">Branding</HoveredLink>
-          </div>
-        </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Products">
-          <div className="text-xs sm:text-sm grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 lg:gap-6 p-2 sm:p-4 w-full max-w-xs sm:max-w-sm md:max-w-2xl">
-            <ProductItem
-              title="PanganMerata"
-              href="https://olivia-vert.vercel.app/"
-              src="/PanganMerata.png"
-              description="PanganMerata merupakan platform digital terintegrasi yang dirancang untuk mengatasi ketimpangan informasi distribusi pangan di Indonesia."
-            />
-            <ProductItem
-              title="Jiniso"
-              href="https://github.com/ArthaFreestyle/JINISO"
-              src="/Jiniso.png"
-              description="Marketplace for Jiniso Products with mobile layout"
-            />
-            <div className="md:col-span-1">
-              <ProductItem
-                title="Point Of Sales"
-                href="https://github.com/ArthaFreestyle/cashier-app"
-                src="/POS.png"
-                description="Features include product management, sales processing, inventory tracking, daily/weekly reports, and user access control."
-              />
+              {/* Achievements Card */}
+              <div className="glass-card p-6 lg:p-7 flex-1">
+                <h3 className="text-lg font-bold flex items-center gap-2 mb-5" style={{ color: "var(--text-primary)" }}>
+                  Certificate
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    { title: "EVOP 2024", desc: "National-level technology innovation competition", badge: "Participant", color: "#007aff" },
+                    { title: "MALAKA Project", desc: "Community tech initiative for social impact", badge: "Member", color: "#30d158" },
+                    { title: "GDG Community", desc: "Google Developer Groups local chapter", badge: "Member", color: "#ff9f0a" },
+                    { title: "HIMTI", desc: "IT Student Association — advocating tech education", badge: "Active Member", color: "#af52de" },
+                  ].map((item) => (
+                    <div key={item.title} className="flex items-start gap-3 group cursor-default">
+                      <div className="w-2 h-2 rounded-full mt-2 flex-shrink-0" style={{ background: item.color }} />
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <p className="text-sm lg:text-base font-semibold" style={{ color: "var(--text-primary)" }}>{item.title}</p>
+                          <span className="text-[10px] lg:text-xs font-medium px-2 py-0.5 rounded-full" style={{ background: `${item.color}15`, color: item.color }}>
+                            {item.badge}
+                          </span>
+                        </div>
+                        <p className="text-xs lg:text-sm mt-0.5" style={{ color: "var(--text-secondary)" }}>{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+             
+           
+              {/* <a href="https://drive.google.com/uc?export=download&id=1Jhve40bZx2OtnB9zPV2umtmYjZgjW4G_" download
+                className="glass-card p-4 flex items-center justify-center gap-2 group cursor-pointer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                <span className="text-sm font-semibold" style={{ color: "var(--accent-blue)" }}>Download CV</span>
+              </a> */}
             </div>
-            <div className="md:col-span-1">
-              <ProductItem
-                title="Akademi Crypto Copy"
-                href="https://userogue.com"
-                src="/Mobile.png"
-                description="Mobile News Application Built With Flutter"
-              />
-            </div>
+
           </div>
-        </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Pricing">
-          <div className="flex flex-col space-y-2 sm:space-y-4 text-xs sm:text-sm p-2 sm:p-4">
-            <HoveredLink href="/hobby">Hobby</HoveredLink>
-            <HoveredLink href="/individual">Individual</HoveredLink>
-            <HoveredLink href="/team">Team</HoveredLink>
-            <HoveredLink href="/enterprise">Enterprise</HoveredLink>
-          </div>
-        </MenuItem>
-      </Menu>
+        </main>
+      </PageTransition>
     </div>
   );
 }
