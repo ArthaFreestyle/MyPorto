@@ -23,7 +23,6 @@ const stack = [
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const [bioTooltip, setBioTooltip] = useState(false);
   const [activeStatTooltip, setActiveStatTooltip] = useState<string | null>(null);
 
   useEffect(() => {
@@ -45,7 +44,7 @@ export default function Home() {
               <div className="glass-card p-6 md:p-10 lg:p-13">
                 {/* Photo + Title side by side */}
                 <div ref={heroRef} className="flex items-center gap-4 mb-5 opacity-0">
-                  <div className="w-40 h-48 md:w-20 md:h-28 lg:w-28 lg:h-36 rounded-2xl overflow-hidden shadow-lg ring-2 ring-white/50 flex-shrink-0">
+                  <div className="w-40 h-48 md:w-20 md:h-28 lg:w-28 lg:h-36 rounded-xl overflow-hidden shadow-lg ring-2 ring-white/50 flex-shrink-0">
                     <Image src="/profile.jpg" alt="Artha Gandhi" width={96} height={96} className="w-full h-full border-2 border-black object-cover" priority />
                   </div>
                   <div className="flex-1 w-full h-full flex flex-col justify-center items-center overflow-hidden">
@@ -169,30 +168,26 @@ export default function Home() {
               </div>
             </div>
 
-            {/* ===== RIGHT COLUMN: Achievements ===== */}
+            {/* ===== RIGHT COLUMN: Competition ===== */}
             <div className="lg:col-span-3 flex flex-col gap-3">
 
               {/* Achievements Card */}
               <div className="glass-card p-6 lg:p-7 flex-1">
                 <h3 className="text-lg font-bold flex items-center gap-2 mb-5" style={{ color: "var(--text-primary)" }}>
-                  Certificate
+                  Competition Experience
                 </h3>
                 <div className="space-y-4">
                   {[
-                    { title: "EVOP 2024", desc: "National-level technology innovation competition", badge: "Participant", color: "#007aff" },
-                    { title: "MALAKA Project", desc: "Community tech initiative for social impact", badge: "Member", color: "#30d158" },
-                    { title: "GDG Community", desc: "Google Developer Groups local chapter", badge: "Member", color: "#ff9f0a" },
-                    { title: "HIMTI", desc: "IT Student Association — advocating tech education", badge: "Active Member", color: "#af52de" },
+                    { title: "Olivia 2025", desc: "PanganMerata - Participant", badge: "/Olivia.webp", color: "#FFFFFF" },
+                    { title: "Gemastik 2025", desc: "Participant", badge: "/Gemastik.webp", color: "#FFFFFF" },
                   ].map((item) => (
-                    <div key={item.title} className="flex items-start gap-3 group cursor-default">
-                      <div className="w-2 h-2 rounded-full mt-2 flex-shrink-0" style={{ background: item.color }} />
+                    <div key={item.title} className="flex items-center gap-3 md:gap-4 group cursor-default">
+                      {/* Square webp badge on the left */}
+                      <div className="w-10 h-10 md:w-11 md:h-11 rounded-lg shrink-0 overflow-hidden bg-white/5 border flex items-center justify-center p-1.5" style={{ background: `${item.color}15`, borderColor: `${item.color}30` }}>
+                        <img src={item.badge} alt={`${item.title} badge`} width={44} height={44} className="w-full h-full object-contain" onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/44' }} />
+                      </div>
                       <div className="flex-1">
-                        <div className="flex items-center justify-between">
-                          <p className="text-sm lg:text-base font-semibold" style={{ color: "var(--text-primary)" }}>{item.title}</p>
-                          <span className="text-[10px] lg:text-xs font-medium px-2 py-0.5 rounded-full" style={{ background: `${item.color}15`, color: item.color }}>
-                            {item.badge}
-                          </span>
-                        </div>
+                        <p className="text-sm lg:text-base font-semibold" style={{ color: "var(--text-primary)" }}>{item.title}</p>
                         <p className="text-xs lg:text-sm mt-0.5" style={{ color: "var(--text-secondary)" }}>{item.desc}</p>
                       </div>
                     </div>
