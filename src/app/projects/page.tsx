@@ -4,6 +4,20 @@ import PageTransition from "@/components/PageTransition";
 
 const projects = [
   {
+    title : "Arsiva",
+    description: "platform pembelajaran berbasis gamifikasi yang dirancang untuk mengeksplorasi dan menyelami sejarah dengan cara yang sangat interaktif dan memikat.",
+    image: "/Arsiva.png",
+    tags: ["Go","NextJs", "PostgreSQL","Redis","Docker"],
+    link: "https://github.com/ArthaFreestyle/Arsiva",
+  },
+  {
+    title: "SIMBA",
+    description: "Sistem Informasi Manajemen Barang Airlangga (Enterprise Resource Planning). Sistem ini dirancang untuk membantu Universitas Airlangga dalam mengelola inventaris barang, melacak aset, dan mengoptimalkan penggunaan sumber daya.",
+    image: "/SIMBA.png",
+    tags: ["Laravel", "PostgreSQL","Redis","Nginx"],
+    link: "https://github.com/ArthaFreestyle/SIMBA",
+  },
+  {
     title: "PanganMerata",
     description: "Platform digital terintegrasi untuk distribusi pangan di Indonesia. Solusi inovatif untuk menjamin ketersediaan pangan melalui sistem distribusi yang merata dan efisien di seluruh Indonesia.",
     image: "/PanganMerata.png",

@@ -4,23 +4,16 @@ import PageTransition from "@/components/PageTransition";
 
 const experiences = [
   {
-    title: "MALAKA Project",
-    role: "Member",
-    description: "Community project focused on technology and social impact through collaborative innovation. Working alongside passionate developers to build meaningful tech solutions.",
-    image: "/MALAKA.jpg",
-    color: "#007aff",
-  },
-  {
     title: "HIMTI",
-    role: "Active Member",
+    role: "Tutoring",
     description: "Himpunan Mahasiswa Teknik Informatika — student organization for IT students advocating for tech education, hosting workshops, and building a strong dev community.",
     image: "/HIMTI.jpg",
     color: "#30d158",
   },
   {
     title: "EVOP",
-    role: "Participant",
-    description: "National-level event for technology innovation, entrepreneurship, and competitive programming. Competed against top universities across Indonesia.",
+    role: "Member",
+    description: "Software House",
     image: "/EVOP.jpg",
     color: "#af52de",
   },
@@ -74,7 +67,7 @@ export default function ExperiencePage() {
               I&apos;m always open to discussing new projects, creative ideas, or
               opportunities to be part of your vision.
             </p>
-            <a href="mailto:arthafreestyle@gmail.com"
+            <a href="mailto:Arumifathina@gmail.com"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-full text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
               style={{ background: "var(--text-primary)" }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -86,8 +79,8 @@ export default function ExperiencePage() {
             <div className="flex items-center justify-center gap-5 mt-7 pt-5" style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}>
               {[
                 { label: "GitHub", href: "https://github.com/ArthaFreestyle" },
-                { label: "LinkedIn", href: "https://linkedin.com" },
-                { label: "Email", href: "mailto:arthafreestyle@gmail.com" },
+                { label: "LinkedIn", href: "https://linkedin.com/in/artha-gandhi-wardhana-aksa-724b42253/" },
+                { label: "Email", href: "mailto:Arumifathina@gmail.com" },
               ].map((link, i) => (
                 <span key={link.label} className="flex items-center gap-5">
                   {i > 0 && <span style={{ color: "var(--text-tertiary)" }}>·</span>}
