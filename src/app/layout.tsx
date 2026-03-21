@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: "Artha Gandhi — Full-Stack Developer",
   description:
     "Full-Stack Developer based in Indonesia. Building modern web applications from ideation to launch.",
+    icons: {
+    icon: '/about-icon.webp?v=2',
+  },
 };
 
 export default function RootLayout({
@@ -23,9 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        {/* Ambient gradient orbs removed for klvn.dev flat style */}
-
-        {/* Dock nav — rendered ONCE in layout, persists across pages */}
+       
         <DockNav />
 
         {children}

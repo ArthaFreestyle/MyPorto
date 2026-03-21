@@ -8,16 +8,16 @@ import LiquidText from "@/components/LiquidText";
 
 const stack = [
   {
-    id : 1,
-    image : "/php.webp"
+    id: 1,
+    image: "/php.webp"
   },
   {
     id: 2,
-    image : "/rust-original.svg"
+    image: "/rust-original.svg"
   },
   {
     id: 3,
-    image : "/go.webp"
+    image: "/go.webp"
   }
 ]
 
@@ -55,34 +55,34 @@ export default function Home() {
                   </div>
                 </div>
 
-               <div className="flex items-center gap-2.5">
-                <h2 className="text-2xl lg:text-2xl font-bold" style={{ color: "var(--text-primary)" }}>Artha Gandhi Wardhana Aksa</h2>
                 <div className="flex items-center gap-2.5">
-                  {[
-                    { href: "https://github.com/ArthaFreestyle", d: "M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z", fill: true },
-                    { href: "https://linkedin.com", d: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z", fill: true },
-                  ].map((s, i) => (
-                    <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
-                      className="w-15 h-15 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
-                      style={{ background: "rgba(0,0,0,0.04)" }}>
-                      <svg width="30" height="30" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d={s.d} /></svg>
-                    </a>
-                  ))}
-                </div>
+                  <h2 className="text-2xl lg:text-2xl font-bold" style={{ color: "var(--text-primary)" }}>Artha Gandhi Wardhana Aksa</h2>
+                  <div className="flex items-center gap-2.5">
+                    {[
+                      { href: "https://github.com/ArthaFreestyle", d: "M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z", fill: true },
+                      { href: "https://linkedin.com", d: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z", fill: true },
+                    ].map((s, i) => (
+                      <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
+                        className="w-15 h-15 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                        style={{ background: "rgba(0,0,0,0.04)" }}>
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d={s.d} /></svg>
+                      </a>
+                    ))}
+                  </div>
                 </div>
 
               </div>
 
               <div className="glass-card p-5 md:p-5 lg:p-5" >
                 {/* Badge */}
-                
+
                 <div >
-                  <div className="flex flex-col md:flex-row gap-3 mb-2"> 
-                  <div className="flex flex-row items-center">
-                    <AnimatedTooltip items={stack} />
+                  <div className="flex flex-col md:flex-row gap-3 mb-2">
+                    <div className="flex flex-row items-center">
+                      <AnimatedTooltip items={stack} />
+                    </div>
+                    <p className="text-xl font-bold" style={{ color: "var(--text-primary)" }}>Backend Engineer</p>
                   </div>
-                   <p className="text-xl font-bold" style={{ color: "var(--text-primary)" }}>Backend Engineer</p>
-                   </div>
                   <p className="text-xs" style={{ color: "var(--text-secondary)" }}>From coffee brainstorm to launch day. I like to Dev and Design.</p>
                 </div>
 
@@ -97,17 +97,17 @@ export default function Home() {
                     { v: "2+", l: "Years of\nJourney", t: "Writing clean architecture, optimizing heavy queries, and fixing whatever the previous guy broke." }
                   ].map((s) => (
                     <div key={s.l} className="text-center relative"
-                         onMouseEnter={() => setActiveStatTooltip(s.l)}
-                         onMouseLeave={() => setActiveStatTooltip(null)}>
+                      onMouseEnter={() => setActiveStatTooltip(s.l)}
+                      onMouseLeave={() => setActiveStatTooltip(null)}>
                       <p className="text-2xl lg:text-3xl font-bold" style={{ color: "var(--text-primary)" }}>{s.v}</p>
                       <p className="text-[10px] lg:text-xs leading-tight whitespace-pre-line mt-1" style={{ color: "var(--text-secondary)" }}>{s.l}</p>
-                      
+
                       {/* Tooltip Wrapper to prevent CSS animation from overwriting translate-x */}
                       {activeStatTooltip === s.l && (
                         <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-48 z-50">
                           <div className="ios-tooltip text-center block shadow-[0_10px_40px_rgba(0,0,0,0.5)] w-full"
-                            style={{ 
-                              animation: "puzzlePop 0.35s ease forwards", 
+                            style={{
+                              animation: "puzzlePop 0.35s ease forwards",
                               cursor: "default",
                               background: "linear-gradient(145deg, rgba(140, 140, 145, 0.95) 0%, rgba(15, 15, 18, 0.95) 100%)",
                               border: "1px solid rgba(255, 255, 255, 0.2)"
@@ -126,54 +126,45 @@ export default function Home() {
             <div className="lg:col-span-5 flex flex-col gap-3">
 
               {/* Bio Card */}
-              <div className="glass-card p-6 lg:p-7 flex-1 relative cursor-default"
-                onMouseEnter={() => setBioTooltip(true)} onMouseLeave={() => setBioTooltip(false)}>
-                <p className="text-base font-bold lg:text-lg leading-relaxed mb-4" style={{ color: "var(--text-primary)" }}>
-                  I kicked things off building web applications and exploring
-                  modern frameworks, coding quick prototypes and shipping production-ready platforms.
-                </p>
-                <p className="text-base font-bold lg:text-lg leading-relaxed mb-4" style={{ color: "var(--text-primary)" }}>
-                  That small hustle morphed into a full-time adventure, where I&apos;ve
-                  built all kinds of web and mobile products.
-                </p>
-                <p className="text-base lg:text-lg leading-relaxed mb-4" style={{ color: "var(--text-primary)" }}>
-                  From{" "}
-                  <span className="font-bold" style={{ color: "var(--accent-green)" }}>exploring new technologies</span>{" "}
-                  to{" "}
-                  <span className="font-bold" style={{ color: "var(--accent-blue)" }}>shipping real products</span>.
-                </p>
-                <p className="text-sm lg:text-base leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                  Most devs only care about the tech stuff but I&apos;m kinda everywhere. You&apos;ll find
-                  me chatting with startup founders, hanging out in tech communities, or
-                  grabbing coffee with great minds in the space.
-                </p>
-                <p className="text-sm lg:text-base leading-relaxed mt-3" style={{ color: "var(--text-secondary)" }}>
-                  When my teammates get lost in technical jargon I&apos;m usually the one breaking it
-                  down so everyone actually gets what we&apos;re doing. It&apos;s not just about shipping code, it&apos;s about
-                  understanding the people, the market, and the goal behind every line I write.
-                </p>
-
-                
-              </div>
+              <div className="glass-card p-6 lg:p-7 flex-1 relative cursor-default">
+  <p className="text-base font-bold md:text-xl lg:text-xl leading-relaxed mb-4" style={{ color: "var(--text-primary)" }}>
+    I kicked things off diving deep into server-side logic and system design, building APIs from scratch and untangling messy databases.
+  </p>
+  <p className="text-base font-bold md:text-xl lg:text-xl leading-relaxed mb-4" style={{ color: "var(--text-primary)" }}>
+    That curiosity morphed into a full-on obsession with performance, where I&apos;ve spent my time optimizing queries, rewriting legacy systems, and making sure the backend actually scales.
+  </p>
+  <p className="text-base md:text-2xl lg:text-xl leading-relaxed mb-4" style={{ color: "var(--text-primary)" }}>
+    From{" "}
+    <span className="font-bold" style={{ color: "var(--accent-green)" }}>architecting clean code</span>{" "}
+    to{" "}
+    <span className="font-bold" style={{ color: "var(--accent-blue)" }}>shipping high-performance platforms</span>.
+  </p>
+  <p className="text-sm lg:text-base leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+    Most devs are busy chasing the latest frontend trends, but I care about the foundation. You&apos;ll find me nerding out over clean architecture, hunting down N+1 queries, or hanging out in tech communities.
+  </p>
+  <p className="text-sm lg:text-base leading-relaxed mt-3" style={{ color: "var(--text-secondary)" }}>
+    When my teammates get lost in technical jargon, I&apos;m usually the one pulling us back to the fundamentals. It&apos;s not just about typing code; it&apos;s about building maintainable systems that solve actual business problems without crashing under pressure.
+  </p>
+</div>
 
               {/* Philosophy */}
               <div className="glass-card p-6 lg:p-7">
-                <h3 className="text-lg font-bold flex items-center gap-2 mb-4" style={{ color: "var(--text-primary)" }}>
+                <h3 className="text-2xl font-bold flex items-center gap-2 mb-4" style={{ color: "var(--text-primary)" }}>
                   💡 My Philosophy
                 </h3>
                 <blockquote className="text-center mb-4">
                   <p className="text-xl lg:text-2xl font-bold italic" style={{ color: "var(--text-primary)" }}>
-                    &ldquo;Focus on the Endgoal&rdquo;
+                    &ldquo;Build Systems, Not Just Features&rdquo;
                   </p>
                 </blockquote>
                 <p className="text-sm lg:text-base leading-relaxed mb-3" style={{ color: "var(--text-secondary)" }}>
-                  All the actions towards doing something should be focused on the end goal.
-                  Making a landing page? Focus on the conversion and message.
-                  Making a DeFi project? Focus on the security and financial metrics.
+                  Writing code is the easy part; making it scale is where the real engineering happens.
+                  Building an API? Focus on database optimization and response time.
+                  Handling legacy code? Exorcise those N+1 queries before they bring the server down.
                 </p>
                 <p className="text-sm lg:text-base leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                  It&apos;s not about using the most complicated tools and tech possible, it&apos;s about
-                  using the <span className="font-semibold" style={{ color: "var(--accent-blue)" }}>right tools and tech</span> to get the job done.
+                  It&apos;s not about throwing the newest, most hyped framework at a problem. It&apos;s about
+                  using the <span className="font-semibold" style={{ color: "var(--accent-blue)" }}>right architecture and patterns</span> to build a robust foundation that lasts.
                 </p>
               </div>
             </div>
@@ -209,8 +200,8 @@ export default function Home() {
                 </div>
               </div>
 
-             
-           
+
+
               {/* <a href="https://drive.google.com/uc?export=download&id=1Jhve40bZx2OtnB9zPV2umtmYjZgjW4G_" download
                 className="glass-card p-4 flex items-center justify-center gap-2 group cursor-pointer">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
