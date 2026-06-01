@@ -1,214 +1,397 @@
 "use client";
 import Image from "next/image";
-import PageTransition from "@/components/PageTransition";
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
-import LiquidText from "@/components/LiquidText";
-
-const stack = [
-  {
-    id: 1,
-    image: "/php.webp"
-  },
-  {
-    id: 2,
-    image: "/rust-original.svg"
-  },
-  {
-    id: 3,
-    image: "/go.webp"
-  }
-]
+import { ArrowUpRight, Code2, MapPin, Download } from "lucide-react";
 
 export default function Home() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const [activeStatTooltip, setActiveStatTooltip] = useState<string | null>(null);
-
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero) return;
-    gsap.fromTo(hero, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, delay: 0.1, ease: "power3.out" });
-  }, []);
-
   return (
-    <div className="h-[100dvh] w-full flex flex-col overflow-y-auto lg:overflow-hidden relative">
-      <PageTransition>
-        <main className="flex-1 max-w-[1400px] mx-auto px-4 md:px-6 lg:px-6 py-8 md:py-10 lg:py-10 mt-2 md:mt-4 lg:mt-6 w-full min-h-0">
-          <div className="h-full grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6">
+    <main
+      style={{
+        fontFamily: "'Open Runde', system-ui, sans-serif",
+        background: "var(--bg-base)",
+        color: "var(--text-primary)",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "64px 40px 150px",
+      }}
+    >
+      <section style={{ width: "100%", maxWidth: 1200 }}>
+        {/* Bento grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(6, 1fr)",
+            gap: 16,
+          }}
+        >
+          {/* ── INTRO card ── */}
+          <div
+            className="hero-card-reveal"
+            style={{
+              gridColumn: "span 4",
+              gridRow: "span 2",
+              background: "var(--bg-card)",
+              border: "1px solid var(--border)",
+              borderRadius: "var(--radius-xl)",
+              boxShadow: "var(--shadow-card)",
+              padding: "40px 44px",
+              display: "flex",
+              flexDirection: "column",
+              position: "relative",
+              overflow: "hidden",
+              animationDelay: "0.05s",
+            }}
+          >
+            {/* top row */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+              {/* Hello badge */}
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  background: "var(--mint-soft)",
+                  color: "#060606",
+                  fontSize: 14,
+                  fontWeight: 600,
+                  padding: "7px 15px",
+                  borderRadius: "var(--radius-full)",
+                }}
+              >
+                <span className="live-dot-wrap">
+                  <span className="live-dot" />
+                </span>
+                Hello, I&apos;m
+              </span>
 
-            {/* ===== LEFT COLUMN: Profile ===== */}
-            <div className="lg:col-span-4 flex flex-col gap-3">
-
-              {/* Profile Card — photo + name SIDE BY SIDE on top, then details */}
-              <div className="glass-card p-6 md:p-10 lg:p-13">
-                {/* Photo + Title side by side */}
-                <div ref={heroRef} className="flex items-center gap-4 mb-5 opacity-0">
-                  <div className="w-40 h-48 md:w-20 md:h-28 lg:w-28 lg:h-36 rounded-xl overflow-hidden shadow-lg ring-2 ring-white/50 flex-shrink-0">
-                    <Image src="/profile.jpg" alt="Artha Gandhi" width={96} height={96} className="w-full h-full border-2 border-black object-cover" priority />
-                  </div>
-                  <div className="flex-1 w-full h-full flex flex-col justify-center items-center overflow-hidden">
-                    <LiquidText />
-                  </div>
-                  <div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                  <h2 className="text-2xl lg:text-2xl font-bold" style={{ color: "var(--text-primary)" }}>Artha Gandhi Wardhana Aksa</h2>
-                  <div className="flex items-center gap-2.5">
-                    {[
-                      { href: "https://github.com/ArthaFreestyle", d: "M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z", fill: true },
-                      { href: "https://linkedin.com/in/artha-gandhi-wardhana-aksa-724b42253", d: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z", fill: true },
-                    ].map((s, i) => (
-                      <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
-                        className="w-15 h-15 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
-                        style={{ background: "rgba(0,0,0,0.04)" }}>
-                        <svg width="30" height="30" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d={s.d} /></svg>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
-              </div>
-
-              <div className="glass-card p-5 md:p-5 lg:p-5" >
-                {/* Badge */}
-
-                <div >
-                  <div className="flex flex-col md:flex-row gap-3 mb-2">
-                    <div className="flex flex-row items-center">
-                      <AnimatedTooltip items={stack} />
-                    </div>
-                    <p className="text-xl font-bold" style={{ color: "var(--text-primary)" }}>Backend Engineer</p>
-                  </div>
-                  <p className="text-xs" style={{ color: "var(--text-secondary)" }}>Building the unseen engine that powers the apps.</p>
-                </div>
-
-              </div>
-
-              <div className="glass-card p-6 md:p-7 lg:p-8" >
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-4" style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}>
-                  {[
-                    { v: "10+", l: "Projects\nShipped", t: "From building robust APIs from scratch to exorcising N+1 demons from legacy code. I've seen it all." },
-                    { v: "5+", l: "Satisfied\nClients", t: "I turn sluggish backends into speed demons so founders can finally sleep at night. You're in good hands." },
-                    { v: "2+", l: "Years of\nJourney", t: "Writing clean architecture, optimizing heavy queries, and fixing whatever the previous guy broke." }
-                  ].map((s) => (
-                    <div key={s.l} className="text-center relative"
-                      onMouseEnter={() => setActiveStatTooltip(s.l)}
-                      onMouseLeave={() => setActiveStatTooltip(null)}>
-                      <p className="text-2xl lg:text-3xl font-bold" style={{ color: "var(--text-primary)" }}>{s.v}</p>
-                      <p className="text-[10px] lg:text-xs leading-tight whitespace-pre-line mt-1" style={{ color: "var(--text-secondary)" }}>{s.l}</p>
-
-                      {/* Tooltip Wrapper to prevent CSS animation from overwriting translate-x */}
-                      {activeStatTooltip === s.l && (
-                        <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-48 z-50">
-                          <div className="ios-tooltip text-center block shadow-[0_10px_40px_rgba(0,0,0,0.5)] w-full"
-                            style={{
-                              animation: "puzzlePop 0.35s ease forwards",
-                              cursor: "default",
-                              background: "linear-gradient(145deg, rgba(140, 140, 145, 0.95) 0%, rgba(15, 15, 18, 0.95) 100%)",
-                              border: "1px solid rgba(255, 255, 255, 0.2)"
-                            }}>
-                            {s.t}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* ===== CENTER COLUMN: Bio + Philosophy ===== */}
-            <div className="lg:col-span-5 flex flex-col gap-3">
-
-              {/* Bio Card */}
-              <div className="glass-card p-6 lg:p-7 flex-1 relative cursor-default">
-  <p className="text-base font-bold md:text-xl lg:text-xl leading-relaxed mb-4" style={{ color: "var(--text-primary)" }}>
-    I kicked things off diving deep into server-side logic and system design, building APIs from scratch and untangling messy databases.
-  </p>
-  <p className="text-base font-bold md:text-xl lg:text-xl leading-relaxed mb-4" style={{ color: "var(--text-primary)" }}>
-    That curiosity morphed into a full-on obsession with performance, where I&apos;ve spent my time optimizing queries, rewriting legacy systems, and making sure the backend actually scales.
-  </p>
-  <p className="text-base md:text-2xl lg:text-xl leading-relaxed mb-4" style={{ color: "var(--text-primary)" }}>
-    From{" "}
-    <span className="font-bold" style={{ color: "var(--accent-green)" }}>architecting clean code</span>{" "}
-    to{" "}
-    <span className="font-bold" style={{ color: "var(--accent-blue)" }}>shipping high-performance platforms</span>.
-  </p>
-  <p className="text-sm lg:text-base leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-    Most devs are busy chasing the latest frontend trends, but I care about the foundation. You&apos;ll find me nerding out over clean architecture, hunting down N+1 queries, or hanging out in tech communities.
-  </p>
-  <p className="text-sm lg:text-base leading-relaxed mt-3" style={{ color: "var(--text-secondary)" }}>
-    When my teammates get lost in technical jargon, I&apos;m usually the one pulling us back to the fundamentals. It&apos;s not just about typing code; it&apos;s about building maintainable systems that solve actual business problems without crashing under pressure.
-  </p>
-</div>
-
-              {/* Philosophy */}
-              <div className="glass-card p-6 lg:p-7">
-                <h3 className="text-2xl font-bold flex items-center gap-2 mb-4" style={{ color: "var(--text-primary)" }}>
-                  💡 My Philosophy
-                </h3>
-                <blockquote className="text-center mb-4">
-                  <p className="text-xl lg:text-2xl font-bold italic" style={{ color: "var(--text-primary)" }}>
-                    &ldquo;Build Systems, Not Just Features&rdquo;
-                  </p>
-                </blockquote>
-                <p className="text-sm lg:text-base leading-relaxed mb-3" style={{ color: "var(--text-secondary)" }}>
-                  Writing code is the easy part; making it scale is where the real engineering happens.
-                  Building an API? Focus on database optimization and response time.
-                  Handling legacy code? Exorcise those N+1 queries before they bring the server down.
-                </p>
-                <p className="text-sm lg:text-base leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                  It&apos;s not about throwing the newest, most hyped framework at a problem. It&apos;s about
-                  using the <span className="font-semibold" style={{ color: "var(--accent-blue)" }}>right architecture and patterns</span> to build a robust foundation that lasts.
-                </p>
+              {/* Socials */}
+              <div style={{ display: "flex", gap: 8 }}>
+                {[
+                  {
+                    label: "GitHub",
+                    href: "https://github.com/ArthaFreestyle",
+                    path: "M12 .5C5.73.5.5 5.73.5 12.21c0 5.18 3.34 9.57 7.98 11.12.58.11.79-.26.79-.57 0-.28-.01-1.02-.02-2-3.25.72-3.94-1.6-3.94-1.6-.53-1.38-1.3-1.75-1.3-1.75-1.06-.74.08-.73.08-.73 1.17.08 1.79 1.23 1.79 1.23 1.04 1.83 2.74 1.3 3.41.99.11-.78.41-1.3.74-1.6-2.6-.3-5.33-1.33-5.33-5.93 0-1.31.46-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.33 3.3 1.23a11.3 11.3 0 0 1 6 0c2.29-1.56 3.29-1.23 3.29-1.23.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.61-2.74 5.62-5.35 5.92.42.37.8 1.1.8 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.69.8.57 4.64-1.55 7.97-5.94 7.97-11.12C23.5 5.73 18.27.5 12 .5Z",
+                  },
+                  {
+                    label: "LinkedIn",
+                    href: "https://linkedin.com/in/artha-gandhi-wardhana-aksa-724b42253",
+                    path: "M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0Z",
+                  },
+                  {
+                    label: "Instagram",
+                    href: "#",
+                    path: "M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16ZM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38A5.86 5.86 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 0 0 2.12-1.38 5.86 5.86 0 0 0 1.38-2.12c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 0 0-1.38-2.12A5.86 5.86 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0Zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.41-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z",
+                  },
+                ].map((s) => (
+                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="social-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width={19} height={19} aria-hidden>
+                      <path d={s.path} />
+                    </svg>
+                  </a>
+                ))}
               </div>
             </div>
 
-            {/* ===== RIGHT COLUMN: Competition ===== */}
-            <div className="lg:col-span-3 flex flex-col gap-3">
+            {/* Name */}
+            <h1
+              style={{
+                fontSize: 64,
+                fontWeight: 700,
+                letterSpacing: "-0.03em",
+                lineHeight: 1.02,
+                marginTop: 28,
+              }}
+            >
+              Artha <span style={{ color: "var(--mint)" }}>Gandhi.</span>
+            </h1>
 
-              {/* Achievements Card */}
-              <div className="glass-card p-6 lg:p-7 flex-1">
-                <h3 className="text-lg font-bold flex items-center gap-2 mb-5" style={{ color: "var(--text-primary)" }}>
-                  Competition Experience
-                </h3>
-                <div className="space-y-4">
-                  {[
-                    { title: "Olivia 2025", desc: "PanganMerata - Participant", badge: "/Olivia.webp", color: "#FFFFFF" },
-                    { title: "Gemastik 2025", desc: "Participant", badge: "/Gemastik.webp", color: "#FFFFFF" },
-                  ].map((item) => (
-                    <div key={item.title} className="flex items-center gap-3 md:gap-4 group cursor-default">
-                      {/* Square webp badge on the left */}
-                      <div className="w-10 h-10 md:w-11 md:h-11 rounded-lg shrink-0 overflow-hidden bg-white/5 border flex items-center justify-center p-1.5" style={{ background: `${item.color}15`, borderColor: `${item.color}30` }}>
-                        <img src={item.badge} alt={`${item.title} badge`} width={44} height={44} className="w-full h-full object-contain" onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/44' }} />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm lg:text-base font-semibold" style={{ color: "var(--text-primary)" }}>{item.title}</p>
-                        <p className="text-xs lg:text-sm mt-0.5" style={{ color: "var(--text-secondary)" }}>{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-
-
-              {/* <a href="https://drive.google.com/uc?export=download&id=1Jhve40bZx2OtnB9zPV2umtmYjZgjW4G_" download
-                className="glass-card p-4 flex items-center justify-center gap-2 group cursor-pointer">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                <span className="text-sm font-semibold" style={{ color: "var(--accent-blue)" }}>Download CV</span>
-              </a> */}
+            {/* Role + location */}
+            <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 20, flexWrap: "wrap" }}>
+              <span style={{ fontSize: 20, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 9 }}>
+                <span
+                  style={{
+                    width: 34, height: 34, borderRadius: "var(--radius-md)",
+                    background: "var(--mint-soft)", color: "var(--mint-text)",
+                    display: "grid", placeItems: "center",
+                  }}
+                >
+                  <Code2 size={18} />
+                </span>
+                Full Stack Developer
+              </span>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#A1A1AA" }} />
+              <span style={{ fontSize: 15, fontWeight: 500, color: "#52525B", display: "inline-flex", alignItems: "center", gap: 6 }}>
+                <MapPin size={16} color="#A1A1AA" />
+                Jakarta, ID
+              </span>
             </div>
 
+            {/* Lede */}
+            <p
+              style={{
+                fontSize: 18, fontWeight: 500, color: "#52525B",
+                marginTop: 22, maxWidth: 560,
+              }}
+            >
+              I turn ideas into{" "}
+              <span
+                style={{
+                  color: "#0A0A0A", fontWeight: 600,
+                  background: "linear-gradient(transparent 62%, var(--mint-soft) 62%)",
+                  padding: "0 2px",
+                }}
+              >
+                shipped, dependable products
+              </span>
+              {" "}— front to back. Clean interfaces, solid systems, and the little details that make software feel good to use.
+            </p>
+
+            {/* CTAs */}
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: "auto", paddingTop: 34 }}>
+              <a href="mailto:arumifathina@gmail.com" className="btn-primary">
+                Get in touch <ArrowUpRight size={17} />
+              </a>
+              <a
+                href="https://drive.google.com/uc?export=download&id=1Jhve40bZx2OtnB9zPV2umtmYjZgjW4G_"
+                download
+                className="btn-ghost"
+              >
+                Download CV <Download size={17} />
+              </a>
+            </div>
           </div>
-        </main>
-      </PageTransition>
-    </div>
+
+          {/* ── AVATAR card ── */}
+          <div
+            className="hero-card-reveal"
+            style={{
+              gridColumn: "span 2",
+              gridRow: "span 2",
+              borderRadius: "var(--radius-xl)",
+              background: "var(--mint-soft)",
+              border: "1.5px solid var(--border)",
+              position: "relative",
+              overflow: "visible",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-end",
+              padding: 20,
+              minHeight: 340,
+              animationDelay: "0.13s",
+            }}
+          >
+            {/* Photo */}
+            <Image
+              src="/artha.webp"
+              alt="Photo of Artha Gandhi"
+              fill
+              className="avatar-photo"
+              style={{ objectFit: "cover", objectPosition: "50% 22%", borderRadius: "var(--radius-xl)" }}
+              sizes="(max-width:860px) 100vw, 33vw"
+              priority
+            />
+            {/* Bottom scrim */}
+            <div
+              style={{
+                position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
+                borderRadius: "var(--radius-xl)",
+                background: "linear-gradient(180deg, rgba(10,10,10,0) 52%, rgba(10,10,10,0.22) 100%)",
+              }}
+            />
+            {/* EVOP badge */}
+            <div
+              style={{
+                position: "absolute", right: 16, bottom: -15, zIndex: 5,
+                display: "flex", alignItems: "center", gap: 10,
+                padding: "8px 11px 8px 8px", borderRadius: 16,
+                background: "rgba(20,22,28,0.80)",
+                backdropFilter: "blur(14px) saturate(1.3)",
+                WebkitBackdropFilter: "blur(14px) saturate(1.3)",
+                border: "1px solid rgba(255,255,255,0.14)",
+                boxShadow: "0 12px 26px rgba(0,0,0,0.36), 0 2px 6px rgba(0,0,0,0.3)",
+              }}
+            >
+              <span
+                style={{
+                  flexShrink: 0, width: 32, height: 32, borderRadius: 9,
+                  display: "grid", placeItems: "center",
+                  background: "#0A0F1A",
+                  border: "1px solid rgba(255,255,255,0.16)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.14)",
+                }}
+              >
+                {/* EVOP logo */}
+                <svg width="15" height="auto" viewBox="0 0 218 259" fill="none" aria-hidden>
+                  <rect x="1.5" y="174.368" width="212.483" height="80.4316" fill="#0088FF" />
+                  <rect x="81.9316" y="77.1298" width="132.052" height="81.6321" fill="#0088FF" />
+                  <path d="M1.5 254.799V1.5H213.983L1.5 254.799Z" fill="#0088FF" stroke="#72C9FF" strokeWidth="3" />
+                </svg>
+              </span>
+              <span style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
+                <span style={{ fontSize: 11, fontWeight: 500, color: "rgba(255,255,255,0.62)", whiteSpace: "nowrap" }}>System Architect</span>
+                <span style={{ fontSize: 14.5, fontWeight: 700, color: "#fff", letterSpacing: "0.01em", whiteSpace: "nowrap" }}>EVOP TECH</span>
+              </span>
+              <span style={{ alignSelf: "flex-start", margin: "1px 0 0 2px", color: "rgba(255,255,255,0.55)", display: "grid", placeItems: "center" }}>
+                <ArrowUpRight size={14} />
+              </span>
+            </div>
+          </div>
+
+          {/* ── STATS card ── */}
+          <div
+            className="hero-card-reveal"
+            style={{
+              gridColumn: "span 3",
+              background: "var(--bg-card)",
+              border: "1px solid var(--border)",
+              borderRadius: "var(--radius-lg)",
+              boxShadow: "var(--shadow-card)",
+              padding: "26px 30px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 16,
+              animationDelay: "0.21s",
+            }}
+          >
+            {[
+              { num: "10", suffix: "+", label: "Projects Shipped" },
+              { num: "20", suffix: "+", label: "Happy Clients" },
+              { num: "3", suffix: "y", label: "Years of Journey" },
+            ].map((s, i) => (
+              <div key={s.label} style={{ display: "contents" }}>
+                <div>
+                  <div style={{ fontSize: 40, fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1 }}>
+                    {s.num}<span style={{ color: "var(--mint)" }}>{s.suffix}</span>
+                  </div>
+                  <div style={{ fontSize: 13.5, color: "#52525B", fontWeight: 500, marginTop: 8 }}>{s.label}</div>
+                </div>
+                {i < 2 && <div style={{ width: 1, alignSelf: "stretch", background: "var(--border)" }} />}
+              </div>
+            ))}
+          </div>
+
+          {/* ── NOW card ── */}
+          <div
+            className="hero-card-reveal"
+            style={{
+              gridColumn: "span 3",
+              background: "var(--bg-card)",
+              border: "1px solid var(--border)",
+              borderRadius: "var(--radius-lg)",
+              boxShadow: "var(--shadow-card)",
+              padding: "24px 28px",
+              display: "flex",
+              flexDirection: "column",
+              gap: 14,
+              animationDelay: "0.29s",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <span className="live-dot-wrap"><span className="live-dot" style={{ width: 9, height: 9 }} /></span>
+              <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "#A1A1AA" }}>Currently building</span>
+            </div>
+            <div style={{ fontSize: 18, fontWeight: 600, letterSpacing: "-0.01em" }}>
+              <span style={{ color: "var(--mint-text)" }}>Artha Portfolio</span> — a bento-grid playground
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
+              {["Next.js", "TypeScript", "React", "Node", "Postgres"].map((t) => (
+                <span
+                  key={t}
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: 6,
+                    padding: "5px 12px", borderRadius: "var(--radius-full)",
+                    fontSize: 12.5, fontWeight: 600,
+                    background: "var(--bg-elevated)", color: "#52525B",
+                    border: "1px solid var(--border)",
+                  }}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <style>{`
+        /* Open Runde on hero */
+        main { font-family: 'Open Runde', system-ui, sans-serif; }
+
+        /* card reveal entrance */
+        .hero-card-reveal {
+          opacity: 0;
+          transform: translateY(20px);
+          animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        /* pulsing live dot */
+        .live-dot-wrap { position: relative; display: inline-block; }
+        .live-dot {
+          display: block;
+          width: 8px; height: 8px;
+          border-radius: 50%;
+          background: var(--mint);
+          position: relative;
+        }
+        .live-dot::after {
+          content: '';
+          position: absolute; inset: 0;
+          border-radius: 50%;
+          background: var(--mint);
+          animation: pulse-mint 1.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+        }
+
+        /* social icons */
+        .social-icon {
+          width: 40px; height: 40px; border-radius: 9999px;
+          display: grid; place-items: center;
+          color: #0A0A0A; background: #FFFFFF;
+          text-decoration: none; border: 1px solid var(--border);
+          transition: background-color .18s, color .18s, border-color .18s;
+        }
+        .social-icon:hover { background: #0A0A0A; color: #FFFFFF; border-color: #0A0A0A; }
+
+        /* CTA buttons */
+        .btn-primary, .btn-ghost {
+          display: inline-flex; align-items: center; gap: 8px;
+          font-family: 'Open Runde', system-ui, sans-serif;
+          font-size: 15px; font-weight: 600; padding: 13px 22px;
+          border-radius: var(--radius-md); border: none; cursor: pointer;
+          text-decoration: none; transition: all .18s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .btn-primary { background: #0A0A0A; color: #FFFFFF; }
+        .btn-primary:hover { background: var(--mint); color: #0A0A0A; transform: scale(1.06); }
+        .btn-ghost {
+          background: var(--bg-card); color: var(--text-primary);
+          border: 1px solid var(--border) !important;
+          border-radius: 9999px !important;
+        }
+        .btn-ghost:hover { background: var(--bg-elevated); }
+
+        /* responsive */
+        @media (max-width: 1024px) {
+          h1 { font-size: 54px !important; }
+        }
+        @media (max-width: 860px) {
+          main { padding: 40px 22px 140px !important; }
+          div[style*="grid-template-columns"] { grid-template-columns: repeat(2, 1fr) !important; }
+          div[style*="span 4"] { grid-column: span 2 !important; grid-row: auto !important; padding: 32px 28px !important; }
+          div[style*="span 2"][style*="grid-row: span 2"] { grid-column: span 2 !important; grid-row: auto !important; min-height: 300px !important; }
+          div[style*="span 3"] { grid-column: span 2 !important; }
+          h1 { font-size: 44px !important; }
+        }
+        @media (max-width: 520px) {
+          div[style*="span 3"][style*="justify-content: space-between"] { flex-direction: column !important; align-items: flex-start !important; gap: 18px !important; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-card-reveal { animation: none; opacity: 1; transform: none; }
+          .live-dot::after { animation: none; display: none; }
+          .btn-primary:hover { transform: none; }
+        }
+      `}</style>
+    </main>
   );
 }
