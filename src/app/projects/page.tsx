@@ -284,9 +284,12 @@ export default function ProjectsPage() {
             margin-top: 20px; padding-bottom: 22px;
           }
           .cc-wide, .cc-portrait {
-            position: static !important;
+            position: relative !important;
             width: 100% !important;
             height: auto !important;
+            left: unset !important;
+            right: unset !important;
+            bottom: unset !important;
             transform: none !important;
             transition: none !important;
           }

@@ -137,6 +137,7 @@ export default function DockNav() {
                     }}
                   />
                   <span
+                    className="dock-lbl"
                     style={{
                       fontSize: isActive ? 19 : 16,
                       fontWeight: isActive ? 700 : 600,
@@ -193,6 +194,12 @@ export default function DockNav() {
         @media (max-width: 520px) {
           .dock-nav-bar { gap: 8px !important; padding: 14px 16px 18px !important; }
           .dock-3d-icon { width: 62px !important; height: 62px !important; margin-top: -42px !important; }
+        }
+
+        @media (max-width: 430px) {
+          .dock-nav-bar { gap: 2px !important; padding: 12px 10px 16px !important; }
+          .dock-3d-icon { width: 52px !important; height: 52px !important; margin-top: -34px !important; }
+          .dock-lbl { font-size: 10px !important; }
         }
 
         @media (prefers-reduced-motion: reduce) {
