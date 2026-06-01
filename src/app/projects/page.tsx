@@ -271,43 +271,38 @@ export default function ProjectsPage() {
         .work-card:hover .cc-wide     { transform: translate(-36px, -28px) rotate(-9deg); }
         .work-card:hover .cc-portrait { transform: translate(36px, -22px) rotate(8deg); }
 
+        /* ---- tablet: ~75% scale ---- */
         @media (max-width: 760px) {
           .works-page-main { padding: 48px 20px 150px; }
           .works-head-h1 { font-size: 38px; }
           .works-head-sub { font-size: 16px; }
-          .work-card { padding: 22px 20px 26px; }
+          .work-card { padding: 22px 20px 0; }
           .work-title-h2 { font-size: 22px; }
           .work-desc-p { font-size: 15.5px; margin-top: 14px; }
-          .cc-media {
-            height: auto;
-            display: flex; flex-direction: column; gap: 14px;
-            margin-top: 20px; padding-bottom: 22px;
-          }
-          .cc-wide, .cc-portrait {
-            position: relative !important;
-            width: 100% !important;
-            height: auto !important;
-            left: unset !important;
-            right: unset !important;
-            bottom: unset !important;
-            transform: none !important;
-            transition: none !important;
-          }
-          .cc-wide { aspect-ratio: 16/10; }
-          .cc-portrait { aspect-ratio: 4/3; }
+          .cc-media { height: 220px; margin-top: 20px; }
+          .cc-wide  { width: 405px; height: 240px; bottom: -26px; transform: translate(-16px, -14px) rotate(-7deg); }
+          .cc-portrait { width: 195px; height: 285px; bottom: -26px; transform: translate(16px, -11px) rotate(6deg); }
+          .work-card:hover .cc-wide    { transform: translate(-27px, -21px) rotate(-9deg); }
+          .work-card:hover .cc-portrait{ transform: translate(27px, -17px) rotate(8deg); }
         }
 
+        /* ---- phone: ~50% scale ---- */
         @media (max-width: 480px) {
           .works-page-main { padding: 36px 14px 130px; }
-          .works-head-h1 { font-size: 30px; letter-spacing: -0.02em; }
-          .works-head-sub { font-size: 14.5px; margin-top: 8px; }
-          .work-card { padding: 18px 16px 22px; border-radius: 20px; }
-          .work-title-h2 { font-size: 19px; }
-          .work-desc-p { font-size: 14.5px; margin-top: 12px; }
-          .work-logo-wrap { width: 40px !important; height: 40px !important; }
-          .work-action-btn { width: 34px; height: 34px; }
-          .meta-pill { font-size: 11px; padding: 4px 9px; }
-          .cc-media { gap: 10px; margin-top: 16px; padding-bottom: 18px; }
+          .works-head-h1 { font-size: 28px; letter-spacing: -0.02em; }
+          .works-head-sub { font-size: 14px; margin-top: 8px; }
+          .work-card { padding: 16px 14px 0; border-radius: 20px; }
+          .work-title-h2 { font-size: 18px; }
+          .work-desc-p { font-size: 13.5px; margin-top: 10px; line-height: 1.5; }
+          .work-logo-wrap { width: 38px !important; height: 38px !important; }
+          .work-action-btn { width: 32px; height: 32px; }
+          .work-action-btn svg { width: 14px; height: 14px; }
+          .meta-pill { font-size: 10.5px; padding: 4px 8px; gap: 4px; }
+          .cc-media { height: 150px; margin-top: 14px; }
+          .cc-wide  { width: 270px; height: 160px; bottom: -17px; transform: translate(-11px, -9px) rotate(-7deg); }
+          .cc-portrait { width: 130px; height: 190px; bottom: -17px; transform: translate(11px, -7px) rotate(6deg); }
+          .work-card:hover .cc-wide    { transform: translate(-18px, -14px) rotate(-9deg); }
+          .work-card:hover .cc-portrait{ transform: translate(18px, -11px) rotate(8deg); }
         }
 
         @media (prefers-reduced-motion: reduce) {
