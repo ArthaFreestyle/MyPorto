@@ -256,8 +256,8 @@ export default function Home() {
             }}
           >
             {[
-              { num: "10", suffix: "+", label: "Projects Shipped" },
-              { num: "20", suffix: "+", label: "Happy Clients" },
+              { num: "15", suffix: "+", label: "Projects Shipped" },
+              { num: "10", suffix: "+", label: "Happy Clients" },
               { num: "3", suffix: "y", label: "Years of Journey" },
             ].map((s, i) => (
               <div key={s.label} style={{ display: "contents" }}>
