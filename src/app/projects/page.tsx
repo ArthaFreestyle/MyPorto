@@ -6,7 +6,7 @@ const works = [
   {
     id: "arsiva",
     name: "Arsiva",
-    logo: { src: "/arsiva-logo.png", type: "image" as const },
+    logo: { type: "image" as const, src: "/arsiva-logo.png", className: "arsiva" },
     description: (
       <>
         <b>Arsiva</b> is a gamified learning platform that helps students explore
@@ -22,8 +22,91 @@ const works = [
       { label: "Gamification" },
       { label: "EdTech" },
     ],
-    wide: "/arsiva-cover.png",
-    portrait: "/arsiva-splash.png",
+    wide: { src: "/arsiva-cover.png", bg: "var(--mint-soft)" },
+    portrait: { src: "/arsiva-splash.png", bg: "var(--bg-elevated)" },
+    siteHref: "https://arsiva.id",
+    caseHref: "https://arsiva.id",
+  },
+  {
+    id: "surat",
+    name: "Surat",
+    logo: {
+      type: "svg" as const,
+      svg: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="5" y="3" width="13" height="16" rx="2" stroke="#c15f3c" strokeWidth="1.6" />
+          <rect x="7.5" y="5.5" width="13" height="16" rx="2" fill="#c15f3c" />
+          <path d="M11 11.5h6M11 14.5h4" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" />
+        </svg>
+      ),
+      className: "surat",
+    },
+    description: (
+      <>
+        <b>Surat</b> is an AI-powered form filler built to eliminate the redundant
+        chore of retyping data from paper documents. It uses OCR to extract information
+        from photos or PDFs of IDs, invoices, and forms — then auto-fills the form
+        you have open in your browser.
+      </>
+    ),
+    pills: [
+      { label: "Case Study", dot: "var(--coral)" },
+      { label: "Product Design" },
+      { label: "AI · OCR" },
+      { label: "Web App" },
+      { label: "Productivity" },
+    ],
+    wide: { src: "/surat-cover.webp", bg: "#F5EFE4" },
+    portrait: { src: "/surat-mobile.webp", bg: "#F5EFE4" },
+    siteHref: "https://landing-surat.vercel.app/",
+    caseHref: "https://landing-surat.vercel.app/",
+  },
+  {
+    id: "simba",
+    name: "SIMBA",
+    logo: { type: "image" as const, src: "/simba-logo.webp", className: "simba" },
+    description: (
+      <>
+        <b>SIMBA</b> — short for <i>Sistem Informasi Manajemen Barang Airlangga</i> —
+        is an enterprise ERP built for Universitas Airlangga to track assets and
+        consumables end-to-end. It covers the full lifecycle from procurement and
+        inventory to plotting, monitoring, and reinventory across every faculty and unit.
+      </>
+    ),
+    pills: [
+      { label: "Case Study", dot: "var(--sky-blue)" },
+      { label: "Product Design" },
+      { label: "ERP · Asset Management" },
+      { label: "Web App" },
+      { label: "Enterprise" },
+    ],
+    wide: { src: "/simba-cover.png", bg: "#E8EEFB" },
+    portrait: { src: "/simba-login.png", bg: "#FFF7DC" },
+    siteHref: "#",
+    caseHref: "#",
+  },
+  {
+    id: "maps",
+    name: "Airlangga Maps",
+    logo: { type: "image" as const, src: "/maps-logo.png", className: "maps" },
+    description: (
+      <>
+        <b>Airlangga Maps</b> is a mobile wayfinding app that helps new students
+        get around campus — where to borrow a room, where to handle administrative
+        paperwork, where the canteens and prayer rooms are. Each place comes with
+        photos, opening hours, a short description, and walking directions from
+        wherever you&apos;re standing.
+      </>
+    ),
+    pills: [
+      { label: "Case Study", dot: "var(--mint)" },
+      { label: "Product Design" },
+      { label: "Mobile App" },
+      { label: "Wayfinding" },
+      { label: "Campus" },
+    ],
+    wide: { src: "/maps-admin.webp", bg: "#0A0A0A" },
+    portrait: { src: "/maps-mobile.webp", bg: "#E6F7EC" },
     siteHref: "#",
     caseHref: "#",
   },
@@ -106,12 +189,32 @@ export default function ProjectsPage() {
           box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08);
         }
 
+        .work-logo-wrap {
+          flex-shrink: 0;
+          width: 48px; height: 48px;
+          border-radius: 14px;
+          display: grid; place-items: center;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .work-logo-wrap.arsiva,
+        .work-logo-wrap.simba,
+        .work-logo-wrap.maps {
+          background: transparent;
+          box-shadow: none;
+          width: 52px; height: 52px;
+          border-radius: 0;
+        }
+        .work-logo-wrap.surat {
+          background: transparent;
+          box-shadow: none;
+          width: 48px; height: 48px;
+          border-radius: 0;
+        }
+
         .work-action-btn {
-          width: 38px;
-          height: 38px;
+          width: 38px; height: 38px;
           border-radius: 9999px;
-          display: grid;
-          place-items: center;
+          display: grid; place-items: center;
           color: #0A0A0A;
           background: transparent;
           border: 1px solid #E4E4E7;
@@ -128,56 +231,39 @@ export default function ProjectsPage() {
         }
 
         .meta-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          padding: 5px 12px;
-          border-radius: 9999px;
-          font-size: 12.5px;
-          font-weight: 600;
-          background: #F4F5F7;
-          color: #52525B;
+          display: inline-flex; align-items: center; gap: 6px;
+          padding: 5px 12px; border-radius: 9999px;
+          font-size: 12.5px; font-weight: 600;
+          background: #F4F5F7; color: #52525B;
           border: 1px solid #E4E4E7;
           font-family: 'Open Runde', system-ui, sans-serif;
         }
 
         .cc-media {
-          position: relative;
-          height: 300px;
-          margin: 28px auto 0;
-          max-width: 700px;
+          position: relative; height: 300px;
+          margin: 28px auto 0; max-width: 700px;
         }
         .cc-wide {
-          position: absolute;
-          bottom: -34px;
-          left: 0;
-          width: 540px;
-          height: 320px;
+          position: absolute; bottom: -34px; left: 0;
+          width: 540px; height: 320px;
           border-radius: 16px;
           box-shadow: 0 10px 28px rgba(0,0,0,0.14), 0 2px 6px rgba(0,0,0,0.06);
           transform-origin: bottom center;
           transform: translate(-22px, -18px) rotate(-7deg);
           transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
           will-change: transform;
-          z-index: 2;
-          overflow: hidden;
-          background: #D7F7E6;
+          z-index: 2; overflow: hidden;
         }
         .cc-portrait {
-          position: absolute;
-          bottom: -34px;
-          right: 0;
-          width: 260px;
-          height: 380px;
+          position: absolute; bottom: -34px; right: 0;
+          width: 260px; height: 380px;
           border-radius: 16px;
           box-shadow: 0 10px 28px rgba(0,0,0,0.14), 0 2px 6px rgba(0,0,0,0.06);
           transform-origin: bottom center;
           transform: translate(22px, -14px) rotate(6deg);
           transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
           will-change: transform;
-          z-index: 1;
-          overflow: hidden;
-          background: #F4F5F7;
+          z-index: 1; overflow: hidden;
         }
         .work-card:hover .cc-wide     { transform: translate(-36px, -28px) rotate(-9deg); }
         .work-card:hover .cc-portrait { transform: translate(36px, -22px) rotate(8deg); }
@@ -186,11 +272,8 @@ export default function ProjectsPage() {
           .work-card { padding: 24px 22px 26px; }
           .cc-media {
             height: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            margin-top: 22px;
-            padding-bottom: 24px;
+            display: flex; flex-direction: column; gap: 18px;
+            margin-top: 22px; padding-bottom: 24px;
           }
           .cc-wide, .cc-portrait {
             position: static !important;
@@ -226,23 +309,18 @@ function WorkCard({
       {/* Top row */}
       <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
         {/* Logo */}
-        <span
-          style={{
-            flexShrink: 0,
-            width: 52,
-            height: 52,
-            borderRadius: 0,
-            display: "grid",
-            placeItems: "center",
-          }}
-        >
-          <Image
-            src={work.logo.src}
-            alt={`${work.name} logo`}
-            width={52}
-            height={52}
-            style={{ objectFit: "contain", width: "100%", height: "100%" }}
-          />
+        <span className={`work-logo-wrap ${work.logo.className}`}>
+          {work.logo.type === "image" ? (
+            <Image
+              src={work.logo.src!}
+              alt={`${work.name} logo`}
+              width={52}
+              height={52}
+              style={{ objectFit: "contain", width: "100%", height: "100%" }}
+            />
+          ) : (
+            work.logo.svg
+          )}
         </span>
 
         <h2
@@ -258,17 +336,12 @@ function WorkCard({
         </h2>
 
         {/* Actions */}
-        <div
-          style={{
-            marginLeft: "auto",
-            display: "flex",
-            alignItems: "center",
-            gap: 6,
-          }}
-        >
+        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 6 }}>
           <a
             className="work-action-btn"
             href={work.siteHref}
+            target={work.siteHref !== "#" ? "_blank" : undefined}
+            rel={work.siteHref !== "#" ? "noopener noreferrer" : undefined}
             aria-label={`Visit ${work.name} site`}
           >
             <GlobeIcon />
@@ -276,6 +349,8 @@ function WorkCard({
           <a
             className="work-action-btn"
             href={work.caseHref}
+            target={work.caseHref !== "#" ? "_blank" : undefined}
+            rel={work.caseHref !== "#" ? "noopener noreferrer" : undefined}
             aria-label={`Open ${work.name} case study`}
           >
             <ArrowUpRightIcon />
@@ -299,24 +374,14 @@ function WorkCard({
       </p>
 
       {/* Meta pills */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 7,
-          marginTop: 18,
-        }}
-      >
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginTop: 18 }}>
         {work.pills.map((pill) => (
           <span key={pill.label} className="meta-pill">
             {pill.dot && (
               <span
                 style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  background: pill.dot,
-                  flexShrink: 0,
+                  width: 6, height: 6, borderRadius: "50%",
+                  background: pill.dot, flexShrink: 0,
                 }}
               />
             )}
@@ -327,18 +392,18 @@ function WorkCard({
 
       {/* Media showcase */}
       <div className="cc-media">
-        <div className="cc-wide">
+        <div className="cc-wide" style={{ background: work.wide.bg }}>
           <Image
-            src={work.wide}
+            src={work.wide.src}
             alt={`${work.name} cover`}
             fill
             style={{ objectFit: "cover" }}
-            sizes="440px"
+            sizes="540px"
           />
         </div>
-        <div className="cc-portrait">
+        <div className="cc-portrait" style={{ background: work.portrait.bg }}>
           <Image
-            src={work.portrait}
+            src={work.portrait.src}
             alt={`${work.name} screenshot`}
             fill
             style={{ objectFit: "cover" }}
