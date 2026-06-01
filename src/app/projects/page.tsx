@@ -116,41 +116,15 @@ export default function ProjectsPage() {
   return (
     <div className="h-[100dvh] w-full flex flex-col overflow-y-auto relative">
       <PageTransition>
-        <main
-          style={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "center",
-            padding: "80px 40px 170px",
-          }}
-        >
+        <main className="works-page-main">
           <section style={{ width: "100%", maxWidth: 1080 }}>
             {/* Header */}
             <header
               className="works-reveal"
               style={{ marginBottom: 32, animationDelay: "0.04s" }}
             >
-              <h1
-                style={{
-                  fontSize: 54,
-                  fontWeight: 700,
-                  letterSpacing: "-0.03em",
-                  lineHeight: 1.02,
-                  color: "var(--text-primary)",
-                  fontFamily: "'Open Runde', system-ui, sans-serif",
-                }}
-              >
-                My Works Highlights
-              </h1>
-              <p
-                style={{
-                  fontSize: 18,
-                  color: "var(--text-secondary)",
-                  fontWeight: 500,
-                  marginTop: 10,
-                  fontFamily: "'Open Runde', system-ui, sans-serif",
-                }}
-              >
+              <h1 className="works-head-h1">My Works Highlights</h1>
+              <p className="works-head-sub">
                 I&apos;ve worked on a lot of projects, here are some of my favorites.
               </p>
             </header>
@@ -173,6 +147,35 @@ export default function ProjectsPage() {
         }
         @keyframes works-reveal-up {
           to { opacity: 1; transform: none; }
+        }
+
+        .works-page-main {
+          flex: 1; display: flex; justify-content: center;
+          padding: 80px 40px 170px;
+        }
+        .works-head-h1 {
+          font-size: 54px; font-weight: 700;
+          letter-spacing: -0.03em; line-height: 1.02;
+          color: var(--text-primary);
+          font-family: 'Open Runde', system-ui, sans-serif;
+        }
+        .works-head-sub {
+          font-size: 18px; color: var(--text-secondary);
+          font-weight: 500; margin-top: 10px;
+          font-family: 'Open Runde', system-ui, sans-serif;
+        }
+        .work-title-h2 {
+          font-size: 26px; font-weight: 700;
+          letter-spacing: -0.02em;
+          font-family: 'Open Runde', system-ui, sans-serif;
+          color: var(--text-primary);
+        }
+        .work-desc-p {
+          margin-top: 18px; font-size: 16.5px;
+          color: var(--text-secondary); font-weight: 500;
+          max-width: 760px;
+          font-family: 'Open Runde', system-ui, sans-serif;
+          line-height: 1.55;
         }
 
         .work-card {
@@ -269,20 +272,39 @@ export default function ProjectsPage() {
         .work-card:hover .cc-portrait { transform: translate(36px, -22px) rotate(8deg); }
 
         @media (max-width: 760px) {
-          .work-card { padding: 24px 22px 26px; }
+          .works-page-main { padding: 48px 20px 150px; }
+          .works-head-h1 { font-size: 38px; }
+          .works-head-sub { font-size: 16px; }
+          .work-card { padding: 22px 20px 26px; }
+          .work-title-h2 { font-size: 22px; }
+          .work-desc-p { font-size: 15.5px; margin-top: 14px; }
           .cc-media {
             height: auto;
-            display: flex; flex-direction: column; gap: 18px;
-            margin-top: 22px; padding-bottom: 24px;
+            display: flex; flex-direction: column; gap: 14px;
+            margin-top: 20px; padding-bottom: 22px;
           }
           .cc-wide, .cc-portrait {
             position: static !important;
             width: 100% !important;
             height: auto !important;
             transform: none !important;
+            transition: none !important;
           }
           .cc-wide { aspect-ratio: 16/10; }
-          .cc-portrait { aspect-ratio: 3/4; }
+          .cc-portrait { aspect-ratio: 4/3; }
+        }
+
+        @media (max-width: 480px) {
+          .works-page-main { padding: 36px 14px 130px; }
+          .works-head-h1 { font-size: 30px; letter-spacing: -0.02em; }
+          .works-head-sub { font-size: 14.5px; margin-top: 8px; }
+          .work-card { padding: 18px 16px 22px; border-radius: 20px; }
+          .work-title-h2 { font-size: 19px; }
+          .work-desc-p { font-size: 14.5px; margin-top: 12px; }
+          .work-logo-wrap { width: 40px !important; height: 40px !important; }
+          .work-action-btn { width: 34px; height: 34px; }
+          .meta-pill { font-size: 11px; padding: 4px 9px; }
+          .cc-media { gap: 10px; margin-top: 16px; padding-bottom: 18px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -323,17 +345,7 @@ function WorkCard({
           )}
         </span>
 
-        <h2
-          style={{
-            fontSize: 26,
-            fontWeight: 700,
-            letterSpacing: "-0.02em",
-            fontFamily: "'Open Runde', system-ui, sans-serif",
-            color: "var(--text-primary)",
-          }}
-        >
-          {work.name}
-        </h2>
+        <h2 className="work-title-h2">{work.name}</h2>
 
         {/* Actions */}
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 6 }}>
@@ -359,19 +371,7 @@ function WorkCard({
       </div>
 
       {/* Description */}
-      <p
-        style={{
-          marginTop: 18,
-          fontSize: 16.5,
-          color: "var(--text-secondary)",
-          fontWeight: 500,
-          maxWidth: 760,
-          fontFamily: "'Open Runde', system-ui, sans-serif",
-          lineHeight: 1.55,
-        }}
-      >
-        {work.description}
-      </p>
+      <p className="work-desc-p">{work.description}</p>
 
       {/* Meta pills */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginTop: 18 }}>
