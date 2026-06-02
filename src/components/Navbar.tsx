@@ -6,7 +6,7 @@ import Image from "next/image";
 const NAV_ITEMS = [
   { icon: "/icons-3d/avatar.webp",    label: "About",      href: "/",           dot: "#38BDF8" },
   { icon: "/icons-3d/laptop.webp",    label: "Works",      href: "/projects",   dot: "#00D26A" },
-  { icon: "/icons-3d/toolbox.webp",   label: "Experience", href: "/experience", dot: "#A78BFA" },
+  { icon: "/icons-3d/toolbox.webp",   label: "Designs",    href: "/designs",    dot: "#A78BFA" },
   { icon: "/icons-3d/paper-pen.webp", label: "Blogs",      href: "/blogs",      dot: "#FF9F1C" },
 ];
 
