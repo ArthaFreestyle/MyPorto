@@ -58,8 +58,8 @@ const works = [
     ],
     wide: { src: "/surat-cover.webp", bg: "#F5EFE4" },
     portrait: { src: "/surat-mobile.webp", bg: "#F5EFE4" },
-    siteHref: "https://landing-surat.vercel.app/",
-    caseHref: "https://landing-surat.vercel.app/",
+    siteHref: "https://surat.pro",
+    caseHref: "https://surat.pro",
   },
   {
     id: "simba",
