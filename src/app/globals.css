@@ -52,6 +52,11 @@
   --coral-soft: #FEE2E2;
   --sky-blue: #38BDF8;
   --sky-soft: #E0F2FE;
+  /* sketch / sticker palette */
+  --ink: #141414;
+  --amber: #F2B12C;
+  --cream: #F4E1AE;
+  --pink-sg: #EF2B5E;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 20px;
