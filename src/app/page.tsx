@@ -1,6 +1,8 @@
 "use client";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { ArrowUpRight, Download } from "lucide-react";
+import { DOCK_RESELECT_EVENT } from "@/lib/events";
 
 const SOCIALS = [
   {
@@ -33,11 +35,53 @@ const STATS = [
 
 const STACK = ["Go Fiber", "MySQL", "Redis", "Docker"];
 
+/* every card flips up out of one point below the grid, then settles into place */
+const SUMMON_TILT = [-7, 6, -4, 5];
+
 export default function Home() {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>(".reveal"));
+
+    function play() {
+      if (!grid) return;
+      grid.classList.add("summoning");
+      cards.forEach((c) => c.classList.remove("summon"));
+
+      // the single point every card is summoned from, just below the grid
+      const g = grid.getBoundingClientRect();
+      const sx = g.left + g.width / 2;
+      const sy = g.bottom + 90;
+
+      cards.forEach((c, i) => {
+        const r = c.getBoundingClientRect();
+        c.style.setProperty("--dx", `${(sx - (r.left + r.width / 2)).toFixed(1)}px`);
+        c.style.setProperty("--dy", `${(sy - (r.top + r.height / 2)).toFixed(1)}px`);
+        c.style.setProperty("--rz", `${SUMMON_TILT[i % SUMMON_TILT.length]}deg`);
+        c.style.setProperty("--d", `${(0.06 + i * 0.14).toFixed(2)}s`);
+      });
+
+      void grid.offsetWidth; // force reflow so the animation restarts
+      cards.forEach((c) => c.classList.add("summon"));
+    }
+
+    const raf = requestAnimationFrame(play);
+    window.addEventListener(DOCK_RESELECT_EVENT, play);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener(DOCK_RESELECT_EVENT, play);
+    };
+  }, []);
+
   return (
     <main className="hero-page">
       <section className="hero">
-        <div className="hero-grid">
+        <div className="hero-grid" ref={gridRef}>
           {/* ── INTRO ── */}
           <div className="card c-intro reveal">
             <div className="top">
@@ -75,9 +119,9 @@ export default function Home() {
             </h1>
 
             <p className="lede">
-              I build{" "}
+              I get excited building{" "}
               <span className="hl">
-                internal systems
+                digital products that actually make sense
                 <svg
                   className="sq"
                   viewBox="0 0 120 7"
@@ -90,9 +134,8 @@ export default function Home() {
                   <path d="M2 4.5c18-3 38 3 56 0s42-3 60 1" />
                 </svg>
               </span>
-              : vehicle-loan logistics for a university fleet, correspondence and permit tools for
-              local offices. Go Fiber and MySQL on the backend, Redis once the queries got slow,
-              Docker so a deploy takes one command.
+              . Most products don&apos;t fail from a lack of features. They fail from confusion.
+              For 3 years I&apos;ve built internal tools that people actually use every day.
             </p>
 
             <div className="cta-row">
@@ -246,6 +289,8 @@ export default function Home() {
           grid-template-columns: repeat(6, 1fr);
           grid-auto-rows: minmax(0, auto);
           gap: 16px;
+          perspective: 1500px;
+          perspective-origin: 50% 130%;
         }
         .hero-page .card {
           background: var(--bg-card);
@@ -268,7 +313,7 @@ export default function Home() {
         .hero-page .c-intro .top {
           display: flex; align-items: center; justify-content: space-between; gap: 16px;
         }
-        .hero-page .socials { display: flex; gap: 8px; }
+        .hero-page .socials { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
         .hero-page .social {
           width: 40px; height: 40px; border-radius: var(--radius-full);
           display: grid; place-items: center; color: #0A0A0A;
@@ -501,7 +546,7 @@ export default function Home() {
           border: 1px solid var(--border);
         }
 
-        /* ===== entrance motion ===== */
+        /* ===== entrance motion — plain reveal is the no-JS baseline ===== */
         .hero-page .reveal {
           opacity: 0; transform: translateY(20px);
           animation: reveal-up .6s var(--ease-custom) forwards;
@@ -511,32 +556,102 @@ export default function Home() {
         .hero-page .hero-grid .reveal:nth-child(3) { animation-delay: .21s; }
         .hero-page .hero-grid .reveal:nth-child(4) { animation-delay: .29s; }
 
+        /* JS-driven variant — takes over once the card positions are measured */
+        .hero-page .hero-grid.summoning .reveal { animation: none; opacity: 0; transform: none; }
+        .hero-page .hero-grid.summoning .reveal.summon {
+          transform-origin: 50% 100%;
+          transform-style: preserve-3d;
+          backface-visibility: hidden;
+          will-change: transform, opacity;
+          animation: summon-flip 1.05s var(--ease-custom) both;
+          animation-delay: var(--d, 0s);
+        }
+        @keyframes summon-flip {
+          0%   { opacity: 0; transform: translate3d(var(--dx,0px), var(--dy,160px), -320px) rotateX(-86deg) rotateZ(var(--rz,0deg)) scale(.52); }
+          28%  { opacity: 1; }
+          52%  { transform: translate3d(calc(var(--dx,0px)*.26), calc(var(--dy,160px)*.32), -70px) rotateX(-26deg) rotateZ(calc(var(--rz,0deg)*.42)) scale(.9); }
+          82%  { transform: translate3d(0,-9px,0) rotateX(5deg) rotateZ(0deg) scale(1.012); }
+          100% { opacity: 1; transform: none; }
+        }
+
         /* ===== responsive ===== */
         @media (max-width: 1024px) {
           .hero-page .c-intro h1 { font-size: 54px; }
+          .hero-page .photo-note { left: -104px; top: 118px; }
+          .hero-page .photo-note .txt { font-size: 23px; }
+          .hero-page .photo-note .arw { width: 66px; height: 54px; }
         }
         @media (max-width: 860px) {
-          .hero-page { padding: 40px 22px 140px; }
+          .hero-page { padding: 40px 22px 150px; background-size: 20px 20px; }
           .hero-page .hero-grid { grid-template-columns: repeat(2, 1fr); }
           .hero-page .c-intro { grid-column: span 2; grid-row: auto; padding: 32px 28px; }
           .hero-page .c-avatar { grid-column: span 2; grid-row: auto; min-height: 300px; }
           .hero-page .c-stats,
           .hero-page .c-now { grid-column: span 2; }
           .hero-page .c-intro h1 { font-size: 44px; }
-          /* the doodles have no room to hang outside the cards */
-          .hero-page .photo-note { top: 16px; left: 16px; }
-          .hero-page .cursor-lbl,
-          .hero-page .cursor-lbl .arrow { animation: none; }
-          .hero-page .stats-note { top: -22px; right: 14px; }
+          /* no gutter left of the photo card once cards stack — tuck the note inside,
+             bottom-left, since the EVOP pill owns bottom-right */
+          .hero-page .photo-note { left: 14px; right: auto; top: auto; bottom: 14px; }
+          .hero-page .photo-note .arw {
+            width: 62px; height: 52px; margin: -4px 0 0 -6px;
+            filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px rgba(255,255,255,.9));
+          }
+          .hero-page .stats-note { right: auto; left: 18px; top: -26px; flex-direction: row-reverse; }
+          .hero-page .stats-note .arw { transform: scaleX(-1); }
+          @keyframes cursor-drift {
+            0%,6%    { transform: translate(0,0); }
+            22%,28%  { transform: translate(0,196px); }
+            44%,50%  { transform: translate(-88px,196px); }
+            66%,72%  { transform: translate(-88px,0); }
+            88%,100% { transform: translate(0,0); }
+          }
         }
         @media (max-width: 520px) {
-          .hero-page .c-stats { flex-direction: column; align-items: flex-start; gap: 18px; }
-          .hero-page .stat-div { display: none; }
-          .hero-page .photo-note .arw { display: none; }
+          .hero-page { padding: 28px 16px 150px; }
+          .hero-page .hero-grid { grid-template-columns: 1fr; gap: 14px; }
+          .hero-page .c-intro,
+          .hero-page .c-avatar,
+          .hero-page .c-stats,
+          .hero-page .c-now { grid-column: span 1; }
+          .hero-page .c-intro { padding: 26px 20px 24px; }
+          .hero-page .c-intro h1 { font-size: 36px; }
+          .hero-page .c-intro h1 .sticker { font-size: 11px; padding: 7px 14px; left: 0; bottom: -22px; }
+          .hero-page .lede { font-size: 16px; margin-top: 32px; }
+          .hero-page .cta-row { padding-top: 26px; }
+          .hero-page .cta-row .btn { flex: 1 1 100%; justify-content: center; }
+          .hero-page .c-avatar { min-height: 330px; }
+          .hero-page .cursor-lbl { display: none; }
+          /* the EVOP pill owns the card's bottom edge at phone widths — park the
+             note top-left, where the cursor label used to sit */
+          .hero-page .photo-note { left: 12px; top: 14px; bottom: auto; align-items: flex-end; }
+          .hero-page .photo-note .txt { font-size: 20px; padding: 2px 12px 3px; }
+          .hero-page .photo-note .arw {
+            width: 50px; height: 44px; margin: 0 0 -4px -2px; transform: scaleY(-1); filter: none;
+          }
+          .hero-page .stats-note { position: absolute; top: 14px; left: 18px; margin: 0; }
+          .hero-page .stats-note .arw { filter: none; }
+          .hero-page .stats-note .txt { font-size: 19px; }
+          .hero-page .c-stats {
+            display: flex; flex-direction: row; align-items: flex-start;
+            justify-content: space-between; gap: 8px; padding: 52px 16px 20px;
+          }
+          .hero-page .stat { flex: 1; text-align: center; }
+          .hero-page .stat .num { font-size: 29px; }
+          .hero-page .stat .lbl { font-size: 11.5px; margin-top: 6px; }
+          .hero-page .stat-div { align-self: stretch; }
+        }
+        @media (max-width: 360px) {
+          .hero-page .c-intro .top { align-items: flex-start; }
+          .hero-page .social { width: 36px; height: 36px; }
+          .hero-page .socials { gap: 6px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .hero-page .reveal { animation: none; opacity: 1; transform: none; }
+          .hero-page .reveal,
+          .hero-page .hero-grid.summoning .reveal,
+          .hero-page .hero-grid.summoning .reveal.summon {
+            animation: none; opacity: 1; transform: none;
+          }
           .hero-page .cursor-lbl,
           .hero-page .cursor-lbl .arrow,
           .hero-page .evop-bar .evop-logo svg { animation: none; }

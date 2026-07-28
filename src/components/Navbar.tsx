@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
+import { DOCK_RESELECT_EVENT } from "@/lib/events";
 
 const NAV_ITEMS = [
   { icon: "/icons-3d/avatar.webp",    label: "About",      href: "/",           dot: "#38BDF8" },
@@ -21,6 +22,11 @@ export default function DockNav() {
       img.classList.remove("dock-jiggle");
       void img.offsetWidth; // force reflow to restart animation
       img.classList.add("dock-jiggle");
+    }
+    // clicking the section you're already on replays that page's entrance
+    if (pathname === href) {
+      window.dispatchEvent(new CustomEvent(DOCK_RESELECT_EVENT, { detail: { href } }));
+      return;
     }
     router.push(href);
   }
@@ -137,7 +143,7 @@ export default function DockNav() {
                     }}
                   />
                   <span
-                    className="dock-lbl"
+                    className={`dock-lbl${isActive ? " active" : ""}`}
                     style={{
                       fontSize: isActive ? 19 : 16,
                       fontWeight: isActive ? 700 : 600,
@@ -192,14 +198,16 @@ export default function DockNav() {
         }
 
         @media (max-width: 520px) {
-          .dock-nav-bar { gap: 8px !important; padding: 14px 16px 18px !important; }
-          .dock-3d-icon { width: 62px !important; height: 62px !important; margin-top: -42px !important; }
+          .dock-nav-bar { gap: 8px !important; padding: 14px 14px 18px !important; }
+          .dock-3d-icon { width: 56px !important; height: 56px !important; margin-top: -38px !important; }
+          .dock-nav-bar button { padding: 0 4px !important; min-width: 44px; }
+          .dock-lbl { font-size: 12px !important; }
+          .dock-lbl.active { font-size: 14px !important; }
         }
 
-        @media (max-width: 430px) {
-          .dock-nav-bar { gap: 2px !important; padding: 12px 10px 16px !important; }
-          .dock-3d-icon { width: 52px !important; height: 52px !important; margin-top: -34px !important; }
-          .dock-lbl { font-size: 10px !important; }
+        @media (max-width: 360px) {
+          .dock-nav-bar { gap: 4px !important; padding: 14px 10px 18px !important; }
+          .dock-nav-bar button { padding: 0 2px !important; }
         }
 
         @media (prefers-reduced-motion: reduce) {

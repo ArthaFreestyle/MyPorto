@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Caveat, Space_Mono } from "next/font/google";
 import "./globals.css";
 import DockNav from "@/components/Navbar";
+import CustomCursor from "@/components/CustomCursor";
+import Ruler from "@/components/Ruler";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -40,6 +42,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${caveat.variable} ${spaceMono.variable} antialiased`}>
        
+        <Ruler />
+        <CustomCursor />
         <DockNav />
 
         {children}
