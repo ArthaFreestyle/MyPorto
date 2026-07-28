@@ -28,8 +28,8 @@ const SOCIALS = [
 ];
 
 const STATS = [
-  { num: "10", accent: "+", label: "Projects Shipped" },
-  { num: "20", accent: "+", label: "Happy Clients" },
+  { num: "20", accent: "+", label: "Projects Shipped" },
+  { num: "10", accent: "+", label: "Happy Clients" },
   { num: "3", accent: "y", label: "Years of Journey" },
 ];
 

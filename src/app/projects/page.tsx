@@ -58,8 +58,8 @@ const works = [
     ],
     wide: { src: "/surat-cover.webp", bg: "#F5EFE4" },
     portrait: { src: "/surat-mobile.webp", bg: "#F5EFE4" },
-    siteHref: "https://surat.pro",
-    caseHref: "https://surat.pro",
+    siteHref: "https://landing-surat.vercel.app/",
+    caseHref: "https://landing-surat.vercel.app/",
   },
   {
     id: "simba",
@@ -91,7 +91,8 @@ const works = [
     logo: { type: "image" as const, src: "/maps-logo.png", className: "maps" },
     description: (
       <>
-        <b>Airlangga Maps</b> is a mobile wayfinding app that helps new students
+        <b>Airlangga Maps</b>{" "}
+        is a mobile wayfinding app that helps new students
         get around campus — where to borrow a room, where to handle administrative
         paperwork, where the canteens and prayer rooms are. Each place comes with
         photos, opening hours, a short description, and walking directions from
@@ -105,8 +106,8 @@ const works = [
       { label: "Wayfinding" },
       { label: "Campus" },
     ],
-    wide: { src: "/maps-admin.webp", bg: "#0A0A0A" },
-    portrait: { src: "/maps-mobile.webp", bg: "#E6F7EC" },
+    wide: { src: "/maps-landscape.webp", bg: "#F4F6F4" },
+    portrait: { src: "/maps-portrait.webp", bg: "#E6F7EC" },
     siteHref: "#",
     caseHref: "#",
   },
@@ -120,10 +121,22 @@ export default function ProjectsPage() {
           <section style={{ width: "100%", maxWidth: 1080 }}>
             {/* Header */}
             <header
-              className="works-reveal"
-              style={{ marginBottom: 32, animationDelay: "0.04s" }}
+              className="works-head works-reveal"
+              style={{ animationDelay: "0.04s" }}
             >
-              <h1 className="works-head-h1">My Works Highlights</h1>
+              <div className="hand-kicker">
+                what I ship
+                <svg className="ul" viewBox="0 0 104 8" fill="none" stroke="#141414" strokeWidth="1.4">
+                  <path d="M2 3c24-2 68-2 100 0" />
+                  <path d="M6 6.5c22-1.6 62-1.6 92 0" />
+                </svg>
+              </div>
+              <h1 className="works-head-h1">
+                <span className="nm">
+                  My Works Highlights
+                  <span className="sticker">4 selected</span>
+                </span>
+              </h1>
               <p className="works-head-sub">
                 I&apos;ve worked on a lot of projects, here are some of my favorites.
               </p>
@@ -152,16 +165,45 @@ export default function ProjectsPage() {
         .works-page-main {
           flex: 1; display: flex; justify-content: center;
           padding: 80px 40px 170px;
+          background: var(--bg-base);
+          background-image:
+            linear-gradient(to right, #ECECEC 1px, transparent 1px),
+            linear-gradient(to bottom, #ECECEC 1px, transparent 1px);
+          background-size: 24px 24px;
+          background-position: center top;
         }
+
+        .works-head { margin-bottom: 32px; }
+
+        /* hand-drawn kicker + amber sticker */
+        .hand-kicker {
+          font-family: var(--font-hand), cursive;
+          font-size: 27px; font-weight: 700; color: var(--ink);
+          display: inline-flex; flex-direction: column; align-items: center; gap: 2px;
+          transform: rotate(-2deg); margin-bottom: 8px;
+        }
+        .hand-kicker .ul { width: 104px; height: 8px; }
+        .works-head-h1 .nm { position: relative; display: inline-block; }
+        .works-head-h1 .sticker {
+          position: absolute; left: 4px; bottom: -26px; z-index: 2;
+          color: var(--ink); background: var(--amber);
+          border: 1.5px solid var(--ink); border-radius: 9999px; white-space: nowrap;
+          font-family: var(--font-mono), ui-monospace, monospace;
+          font-size: 13px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+          padding: 9px 20px; transform: rotate(-3.5deg);
+          box-shadow: 0 2px 0 rgba(20,20,20,.9);
+        }
+
         .works-head-h1 {
           font-size: 54px; font-weight: 700;
           letter-spacing: -0.03em; line-height: 1.02;
           color: var(--text-primary);
           font-family: 'Open Runde', system-ui, sans-serif;
         }
+        /* the top margin is what clears the sticker hanging off the h1 */
         .works-head-sub {
           font-size: 18px; color: var(--text-secondary);
-          font-weight: 500; margin-top: 10px;
+          font-weight: 500; margin-top: 34px;
           font-family: 'Open Runde', system-ui, sans-serif;
         }
         .work-title-h2 {
@@ -173,10 +215,11 @@ export default function ProjectsPage() {
         .work-desc-p {
           margin-top: 18px; font-size: 16.5px;
           color: var(--text-secondary); font-weight: 500;
-          max-width: 760px;
+          max-width: 760px; text-wrap: pretty;
           font-family: 'Open Runde', system-ui, sans-serif;
           line-height: 1.55;
         }
+        .work-desc-p b { color: var(--text-primary); font-weight: 600; }
 
         .work-card {
           position: relative;
@@ -271,38 +314,60 @@ export default function ProjectsPage() {
         .work-card:hover .cc-wide     { transform: translate(-36px, -28px) rotate(-9deg); }
         .work-card:hover .cc-portrait { transform: translate(36px, -22px) rotate(8deg); }
 
-        /* ---- tablet: ~75% scale ---- */
-        @media (max-width: 760px) {
-          .works-page-main { padding: 48px 20px 150px; }
-          .works-head-h1 { font-size: 38px; }
-          .works-head-sub { font-size: 16px; }
-          .work-card { padding: 22px 20px 0; }
-          .work-title-h2 { font-size: 22px; }
-          .work-desc-p { font-size: 15.5px; margin-top: 14px; }
-          .cc-media { height: 220px; margin-top: 20px; }
-          .cc-wide  { width: 405px; height: 240px; bottom: -26px; transform: translate(-16px, -14px) rotate(-7deg); }
-          .cc-portrait { width: 195px; height: 285px; bottom: -26px; transform: translate(16px, -11px) rotate(6deg); }
-          .work-card:hover .cc-wide    { transform: translate(-27px, -21px) rotate(-9deg); }
-          .work-card:hover .cc-portrait{ transform: translate(27px, -17px) rotate(8deg); }
+        /* ---- tablet: slightly tightened, same composition ---- */
+        @media (max-width: 860px) {
+          .works-page-main { padding: 64px 28px 160px; }
+          .works-head-h1 { font-size: 46px; }
+          .work-card { padding: 26px 26px 0; }
+          .work-title-h2 { font-size: 24px; }
+          .work-desc-p { font-size: 16px; }
+          .cc-media { height: 240px; margin-top: 24px; max-width: 560px; }
+          .cc-wide { width: 430px; height: 256px; }
+          .cc-portrait { width: 208px; height: 304px; }
         }
 
-        /* ---- phone: ~50% scale ---- */
-        @media (max-width: 480px) {
-          .works-page-main { padding: 36px 14px 130px; }
-          .works-head-h1 { font-size: 28px; letter-spacing: -0.02em; }
-          .works-head-sub { font-size: 14px; margin-top: 8px; }
-          .work-card { padding: 16px 14px 0; border-radius: 20px; }
+        /* ---- phone: same look, scaled down ---- */
+        @media (max-width: 560px) {
+          .works-page-main { padding: 44px 16px 150px; }
+          .works-head { margin-bottom: 24px; }
+          .hand-kicker { font-size: 23px; }
+          .works-head-h1 { font-size: 34px; }
+          /* sticker shrinks with the heading so it still clears the lede */
+          .works-head-h1 .sticker { font-size: 11px; padding: 7px 14px; bottom: -22px; left: 0; }
+          .works-head-sub { font-size: 15.5px; margin-top: 26px; }
+
+          .work-card { padding: 22px 20px 0; border-radius: 24px; }
+          .work-logo-wrap { width: 42px; height: 42px; border-radius: 12px; }
+          .work-logo-wrap.arsiva,
+          .work-logo-wrap.simba,
+          .work-logo-wrap.maps { width: 46px; height: 46px; }
+          .work-logo-wrap.surat { width: 42px; height: 42px; }
+          .work-logo-wrap.surat svg { width: 30px; height: 30px; }
+          .work-title-h2 { font-size: 20px; }
+          .work-action-btn { width: 34px; height: 34px; }
+          .work-action-btn svg { width: 15px; height: 15px; }
+
+          .work-desc-p { margin-top: 14px; font-size: 14.5px; line-height: 1.5; }
+          .meta-pill { padding: 4px 10px; font-size: 11.5px; }
+
+          /* keep the slipped overlap + tilt — just smaller */
+          .cc-media { height: 200px; margin: 22px auto 0; max-width: 100%; }
+          .cc-wide { width: 64%; height: 170px; transform: translate(-14px, -12px) rotate(-7deg); }
+          .cc-portrait { width: 34%; height: 210px; transform: translate(14px, -10px) rotate(6deg); }
+          .work-card:hover .cc-wide     { transform: translate(-22px, -18px) rotate(-9deg); }
+          .work-card:hover .cc-portrait { transform: translate(22px, -14px) rotate(8deg); }
+        }
+
+        /* ---- very small phones: squeeze a touch more ---- */
+        @media (max-width: 380px) {
+          .works-head-h1 { font-size: 30px; }
+          .work-card { padding: 20px 16px 0; }
           .work-title-h2 { font-size: 18px; }
-          .work-desc-p { font-size: 13.5px; margin-top: 10px; line-height: 1.5; }
-          .work-logo-wrap { width: 38px !important; height: 38px !important; }
-          .work-action-btn { width: 32px; height: 32px; }
-          .work-action-btn svg { width: 14px; height: 14px; }
-          .meta-pill { font-size: 10.5px; padding: 4px 8px; gap: 4px; }
-          .cc-media { height: 150px; margin-top: 14px; }
-          .cc-wide  { width: 270px; height: 160px; bottom: -17px; transform: translate(-11px, -9px) rotate(-7deg); }
-          .cc-portrait { width: 130px; height: 190px; bottom: -17px; transform: translate(11px, -7px) rotate(6deg); }
-          .work-card:hover .cc-wide    { transform: translate(-18px, -14px) rotate(-9deg); }
-          .work-card:hover .cc-portrait{ transform: translate(18px, -11px) rotate(8deg); }
+          .cc-media { height: 178px; }
+          .cc-wide { height: 152px; transform: translate(-10px, -10px) rotate(-7deg); }
+          .cc-portrait { height: 188px; transform: translate(10px, -8px) rotate(6deg); }
+          .work-card:hover .cc-wide     { transform: translate(-16px, -14px) rotate(-9deg); }
+          .work-card:hover .cc-portrait { transform: translate(16px, -12px) rotate(8deg); }
         }
 
         @media (prefers-reduced-motion: reduce) {
